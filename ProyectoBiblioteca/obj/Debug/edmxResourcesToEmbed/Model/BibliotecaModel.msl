@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="GestionBibliotecaModelStoreContainer" CdmEntityContainer="BibliotecaModel">
+    <EntitySetMapping Name="Devoluciones">
+      <EntityTypeMapping TypeName="GestionBibliotecaModel.Devoluciones">
+        <MappingFragment StoreEntitySet="Devoluciones">
+          <ScalarProperty Name="ID_Devolucion" ColumnName="ID_Devolucion" />
+          <ScalarProperty Name="ID_Prestamo" ColumnName="ID_Prestamo" />
+          <ScalarProperty Name="FechaDevolucion" ColumnName="FechaDevolucion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Libros">
+      <EntityTypeMapping TypeName="GestionBibliotecaModel.Libros">
+        <MappingFragment StoreEntitySet="Libros">
+          <ScalarProperty Name="ISBN" ColumnName="ISBN" />
+          <ScalarProperty Name="Titulo" ColumnName="Titulo" />
+          <ScalarProperty Name="Autor" ColumnName="Autor" />
+          <ScalarProperty Name="Genero" ColumnName="Genero" />
+          <ScalarProperty Name="Anio" ColumnName="Anio" />
+          <ScalarProperty Name="Editorial" ColumnName="Editorial" />
+          <ScalarProperty Name="Existencias" ColumnName="Existencias" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Peliculas">
+      <EntityTypeMapping TypeName="GestionBibliotecaModel.Peliculas">
+        <MappingFragment StoreEntitySet="Peliculas">
+          <ScalarProperty Name="ID_Pelicula" ColumnName="ID_Pelicula" />
+          <ScalarProperty Name="Titulo" ColumnName="Titulo" />
+          <ScalarProperty Name="Director" ColumnName="Director" />
+          <ScalarProperty Name="Genero" ColumnName="Genero" />
+          <ScalarProperty Name="Anio" ColumnName="Anio" />
+          <ScalarProperty Name="Duracion" ColumnName="Duracion" />
+          <ScalarProperty Name="Existencias" ColumnName="Existencias" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Prestamos">
+      <EntityTypeMapping TypeName="GestionBibliotecaModel.Prestamos">
+        <MappingFragment StoreEntitySet="Prestamos">
+          <ScalarProperty Name="ID_Prestamo" ColumnName="ID_Prestamo" />
+          <ScalarProperty Name="ID_Usuario" ColumnName="ID_Usuario" />
+          <ScalarProperty Name="ID_Libro" ColumnName="ID_Libro" />
+          <ScalarProperty Name="ID_Pelicula" ColumnName="ID_Pelicula" />
+          <ScalarProperty Name="FechaPrestamo" ColumnName="FechaPrestamo" />
+          <ScalarProperty Name="FechaDevolucion" ColumnName="FechaDevolucion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sanciones">
+      <EntityTypeMapping TypeName="GestionBibliotecaModel.Sanciones">
+        <MappingFragment StoreEntitySet="Sanciones">
+          <ScalarProperty Name="ID_Sancion" ColumnName="ID_Sancion" />
+          <ScalarProperty Name="ID_Usuario" ColumnName="ID_Usuario" />
+          <ScalarProperty Name="Motivo" ColumnName="Motivo" />
+          <ScalarProperty Name="FechaSancion" ColumnName="FechaSancion" />
+          <ScalarProperty Name="FechaFinSancion" ColumnName="FechaFinSancion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Usuarios">
+      <EntityTypeMapping TypeName="GestionBibliotecaModel.Usuarios">
+        <MappingFragment StoreEntitySet="Usuarios">
+          <ScalarProperty Name="ID_Usuario" ColumnName="ID_Usuario" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+          <ScalarProperty Name="CorreoElectronico" ColumnName="CorreoElectronico" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

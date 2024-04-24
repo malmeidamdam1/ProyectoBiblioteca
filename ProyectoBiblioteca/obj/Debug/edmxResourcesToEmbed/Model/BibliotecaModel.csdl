@@ -1,0 +1,164 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="GestionBibliotecaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Devoluciones">
+    <Key>
+      <PropertyRef Name="ID_Devolucion" />
+    </Key>
+    <Property Name="ID_Devolucion" Type="Int32" Nullable="false" />
+    <Property Name="ID_Prestamo" Type="Int32" />
+    <Property Name="FechaDevolucion" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="Prestamos" Relationship="Self.FK__Devolucio__ID_Pr__31EC6D26" FromRole="Devoluciones" ToRole="Prestamos" />
+  </EntityType>
+  <EntityType Name="Libros">
+    <Key>
+      <PropertyRef Name="ISBN" />
+    </Key>
+    <Property Name="ISBN" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Titulo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Autor" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Genero" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Anio" Type="Int32" />
+    <Property Name="Editorial" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Existencias" Type="Int32" />
+    <NavigationProperty Name="Prestamos" Relationship="Self.FK__Prestamos__ID_Li__2D27B809" FromRole="Libros" ToRole="Prestamos" />
+  </EntityType>
+  <EntityType Name="Peliculas">
+    <Key>
+      <PropertyRef Name="ID_Pelicula" />
+    </Key>
+    <Property Name="ID_Pelicula" Type="Int32" Nullable="false" />
+    <Property Name="Titulo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Director" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Genero" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Anio" Type="Int32" />
+    <Property Name="Duracion" Type="Int32" />
+    <Property Name="Existencias" Type="Int32" />
+    <NavigationProperty Name="Prestamos" Relationship="Self.FK__Prestamos__ID_Pe__2E1BDC42" FromRole="Peliculas" ToRole="Prestamos" />
+  </EntityType>
+  <EntityType Name="Prestamos">
+    <Key>
+      <PropertyRef Name="ID_Prestamo" />
+    </Key>
+    <Property Name="ID_Prestamo" Type="Int32" Nullable="false" />
+    <Property Name="ID_Usuario" Type="Int32" />
+    <Property Name="ID_Libro" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="ID_Pelicula" Type="Int32" />
+    <Property Name="FechaPrestamo" Type="DateTime" Precision="0" />
+    <Property Name="FechaDevolucion" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="Devoluciones" Relationship="Self.FK__Devolucio__ID_Pr__31EC6D26" FromRole="Prestamos" ToRole="Devoluciones" />
+    <NavigationProperty Name="Libros" Relationship="Self.FK__Prestamos__ID_Li__2D27B809" FromRole="Prestamos" ToRole="Libros" />
+    <NavigationProperty Name="Peliculas" Relationship="Self.FK__Prestamos__ID_Pe__2E1BDC42" FromRole="Prestamos" ToRole="Peliculas" />
+    <NavigationProperty Name="Usuarios" Relationship="Self.FK__Prestamos__ID_Us__2C3393D0" FromRole="Prestamos" ToRole="Usuarios" />
+  </EntityType>
+  <EntityType Name="Sanciones">
+    <Key>
+      <PropertyRef Name="ID_Sancion" />
+    </Key>
+    <Property Name="ID_Sancion" Type="Int32" Nullable="false" />
+    <Property Name="ID_Usuario" Type="Int32" />
+    <Property Name="Motivo" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="FechaSancion" Type="DateTime" Precision="0" />
+    <Property Name="FechaFinSancion" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="Usuarios" Relationship="Self.FK__Sanciones__ID_Us__29572725" FromRole="Sanciones" ToRole="Usuarios" />
+  </EntityType>
+  <EntityType Name="Usuarios">
+    <Key>
+      <PropertyRef Name="ID_Usuario" />
+    </Key>
+    <Property Name="ID_Usuario" Type="Int32" Nullable="false" />
+    <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CorreoElectronico" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Telefono" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Prestamos" Relationship="Self.FK__Prestamos__ID_Us__2C3393D0" FromRole="Usuarios" ToRole="Prestamos" />
+    <NavigationProperty Name="Sanciones" Relationship="Self.FK__Sanciones__ID_Us__29572725" FromRole="Usuarios" ToRole="Sanciones" />
+  </EntityType>
+  <Association Name="FK__Devolucio__ID_Pr__31EC6D26">
+    <End Role="Prestamos" Type="Self.Prestamos" Multiplicity="0..1" />
+    <End Role="Devoluciones" Type="Self.Devoluciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Prestamos">
+        <PropertyRef Name="ID_Prestamo" />
+      </Principal>
+      <Dependent Role="Devoluciones">
+        <PropertyRef Name="ID_Prestamo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Prestamos__ID_Li__2D27B809">
+    <End Role="Libros" Type="Self.Libros" Multiplicity="0..1" />
+    <End Role="Prestamos" Type="Self.Prestamos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Libros">
+        <PropertyRef Name="ISBN" />
+      </Principal>
+      <Dependent Role="Prestamos">
+        <PropertyRef Name="ID_Libro" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Prestamos__ID_Pe__2E1BDC42">
+    <End Role="Peliculas" Type="Self.Peliculas" Multiplicity="0..1" />
+    <End Role="Prestamos" Type="Self.Prestamos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Peliculas">
+        <PropertyRef Name="ID_Pelicula" />
+      </Principal>
+      <Dependent Role="Prestamos">
+        <PropertyRef Name="ID_Pelicula" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Prestamos__ID_Us__2C3393D0">
+    <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="0..1" />
+    <End Role="Prestamos" Type="Self.Prestamos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuarios">
+        <PropertyRef Name="ID_Usuario" />
+      </Principal>
+      <Dependent Role="Prestamos">
+        <PropertyRef Name="ID_Usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Sanciones__ID_Us__29572725">
+    <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="0..1" />
+    <End Role="Sanciones" Type="Self.Sanciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuarios">
+        <PropertyRef Name="ID_Usuario" />
+      </Principal>
+      <Dependent Role="Sanciones">
+        <PropertyRef Name="ID_Usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="BibliotecaModel" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Devoluciones" EntityType="Self.Devoluciones" />
+    <EntitySet Name="Libros" EntityType="Self.Libros" />
+    <EntitySet Name="Peliculas" EntityType="Self.Peliculas" />
+    <EntitySet Name="Prestamos" EntityType="Self.Prestamos" />
+    <EntitySet Name="Sanciones" EntityType="Self.Sanciones" />
+    <EntitySet Name="Usuarios" EntityType="Self.Usuarios" />
+    <AssociationSet Name="FK__Devolucio__ID_Pr__31EC6D26" Association="Self.FK__Devolucio__ID_Pr__31EC6D26">
+      <End Role="Prestamos" EntitySet="Prestamos" />
+      <End Role="Devoluciones" EntitySet="Devoluciones" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Prestamos__ID_Li__2D27B809" Association="Self.FK__Prestamos__ID_Li__2D27B809">
+      <End Role="Libros" EntitySet="Libros" />
+      <End Role="Prestamos" EntitySet="Prestamos" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Prestamos__ID_Pe__2E1BDC42" Association="Self.FK__Prestamos__ID_Pe__2E1BDC42">
+      <End Role="Peliculas" EntitySet="Peliculas" />
+      <End Role="Prestamos" EntitySet="Prestamos" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Prestamos__ID_Us__2C3393D0" Association="Self.FK__Prestamos__ID_Us__2C3393D0">
+      <End Role="Usuarios" EntitySet="Usuarios" />
+      <End Role="Prestamos" EntitySet="Prestamos" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Sanciones__ID_Us__29572725" Association="Self.FK__Sanciones__ID_Us__29572725">
+      <End Role="Usuarios" EntitySet="Usuarios" />
+      <End Role="Sanciones" EntitySet="Sanciones" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

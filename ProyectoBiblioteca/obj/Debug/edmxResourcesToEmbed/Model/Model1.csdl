@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="LibreriaProyectoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="autores">
+    <Key>
+      <PropertyRef Name="IDAutor" />
+    </Key>
+    <Property Name="IDAutor" Type="Int32" Nullable="false" />
+    <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Apellidos" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Nacionalidad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="libros" Relationship="Self.FK_autor" FromRole="autores" ToRole="libros" />
+  </EntityType>
+  <EntityType Name="clientes">
+    <Key>
+      <PropertyRef Name="IDCliente" />
+    </Key>
+    <Property Name="IDCliente" Type="Int32" Nullable="false" />
+    <Property Name="Apellidos" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Dirección" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Teléfono" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="pedidos" Relationship="Self.FK_idcliente" FromRole="clientes" ToRole="pedidos" />
+  </EntityType>
+  <EntityType Name="detallespedidos">
+    <Key>
+      <PropertyRef Name="IDPedido" />
+      <PropertyRef Name="ISBN" />
+    </Key>
+    <Property Name="IDPedido" Type="Int32" Nullable="false" />
+    <Property Name="ISBN" Type="String" MaxLength="13" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Cantidad" Type="Double" />
+    <NavigationProperty Name="libros" Relationship="Self.FK_isbn" FromRole="detallespedidos" ToRole="libros" />
+    <NavigationProperty Name="pedidos" Relationship="Self.FK_pedido" FromRole="detallespedidos" ToRole="pedidos" />
+  </EntityType>
+  <EntityType Name="librerías">
+    <Key>
+      <PropertyRef Name="IDLibrería" />
+    </Key>
+    <Property Name="IDLibrería" Type="Int32" Nullable="false" />
+    <Property Name="Nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Dirección" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Ciudad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Teléfono" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="pedidos" Relationship="Self.FK_idlibreria" FromRole="librerías" ToRole="pedidos" />
+  </EntityType>
+  <EntityType Name="libros">
+    <Key>
+      <PropertyRef Name="ISBN" />
+    </Key>
+    <Property Name="ISBN" Type="String" MaxLength="13" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Título" Type="String" MaxLength="75" FixedLength="false" Unicode="true" />
+    <Property Name="PRECIO" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="Autor" Type="Int32" />
+    <NavigationProperty Name="autores" Relationship="Self.FK_autor" FromRole="libros" ToRole="autores" />
+    <NavigationProperty Name="detallespedidos" Relationship="Self.FK_isbn" FromRole="libros" ToRole="detallespedidos" />
+  </EntityType>
+  <EntityType Name="pedidos">
+    <Key>
+      <PropertyRef Name="IDPedido" />
+    </Key>
+    <Property Name="IDPedido" Type="Int32" Nullable="false" />
+    <Property Name="IdCliente" Type="Int32" />
+    <Property Name="IDLibrería" Type="Int32" />
+    <Property Name="FechaPedido" Type="DateTime" Precision="0" />
+    <Property Name="Descuento" Type="Int32" />
+    <NavigationProperty Name="clientes" Relationship="Self.FK_idcliente" FromRole="pedidos" ToRole="clientes" />
+    <NavigationProperty Name="detallespedidos" Relationship="Self.FK_pedido" FromRole="pedidos" ToRole="detallespedidos" />
+    <NavigationProperty Name="librerías" Relationship="Self.FK_idlibreria" FromRole="pedidos" ToRole="librerías" />
+  </EntityType>
+  <Association Name="FK_autor">
+    <End Role="autores" Type="Self.autores" Multiplicity="0..1" />
+    <End Role="libros" Type="Self.libros" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="autores">
+        <PropertyRef Name="IDAutor" />
+      </Principal>
+      <Dependent Role="libros">
+        <PropertyRef Name="Autor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_idcliente">
+    <End Role="clientes" Type="Self.clientes" Multiplicity="0..1" />
+    <End Role="pedidos" Type="Self.pedidos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="clientes">
+        <PropertyRef Name="IDCliente" />
+      </Principal>
+      <Dependent Role="pedidos">
+        <PropertyRef Name="IdCliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_isbn">
+    <End Role="libros" Type="Self.libros" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="detallespedidos" Type="Self.detallespedidos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="libros">
+        <PropertyRef Name="ISBN" />
+      </Principal>
+      <Dependent Role="detallespedidos">
+        <PropertyRef Name="ISBN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_pedido">
+    <End Role="pedidos" Type="Self.pedidos" Multiplicity="1" />
+    <End Role="detallespedidos" Type="Self.detallespedidos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="pedidos">
+        <PropertyRef Name="IDPedido" />
+      </Principal>
+      <Dependent Role="detallespedidos">
+        <PropertyRef Name="IDPedido" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_idlibreria">
+    <End Role="librerías" Type="Self.librerías" Multiplicity="0..1" />
+    <End Role="pedidos" Type="Self.pedidos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="librerías">
+        <PropertyRef Name="IDLibrería" />
+      </Principal>
+      <Dependent Role="pedidos">
+        <PropertyRef Name="IDLibrería" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="LibreriaProyectoEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="autores" EntityType="Self.autores" />
+    <EntitySet Name="clientes" EntityType="Self.clientes" />
+    <EntitySet Name="detallespedidos" EntityType="Self.detallespedidos" />
+    <EntitySet Name="librerías" EntityType="Self.librerías" />
+    <EntitySet Name="libros" EntityType="Self.libros" />
+    <EntitySet Name="pedidos" EntityType="Self.pedidos" />
+    <AssociationSet Name="FK_autor" Association="Self.FK_autor">
+      <End Role="autores" EntitySet="autores" />
+      <End Role="libros" EntitySet="libros" />
+    </AssociationSet>
+    <AssociationSet Name="FK_idcliente" Association="Self.FK_idcliente">
+      <End Role="clientes" EntitySet="clientes" />
+      <End Role="pedidos" EntitySet="pedidos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_isbn" Association="Self.FK_isbn">
+      <End Role="libros" EntitySet="libros" />
+      <End Role="detallespedidos" EntitySet="detallespedidos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_pedido" Association="Self.FK_pedido">
+      <End Role="pedidos" EntitySet="pedidos" />
+      <End Role="detallespedidos" EntitySet="detallespedidos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_idlibreria" Association="Self.FK_idlibreria">
+      <End Role="librerías" EntitySet="librerías" />
+      <End Role="pedidos" EntitySet="pedidos" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

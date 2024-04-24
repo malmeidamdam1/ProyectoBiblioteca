@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="b24002b8a85c4f66af6320a14db85226" Name="Diagram1">
+        <EntityTypeShape EntityType="GestionBibliotecaModel.Devoluciones" Width="1.5" PointX="4.75" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionBibliotecaModel.Libros" Width="1.5" PointX="6.875" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionBibliotecaModel.Peliculas" Width="1.5" PointX="7" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionBibliotecaModel.Prestamos" Width="1.5" PointX="4.125" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionBibliotecaModel.Sanciones" Width="1.5" PointX="1.625" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionBibliotecaModel.Usuarios" Width="1.5" PointX="1.5" PointY="2.375" IsExpanded="true" />
+        <AssociationConnector Association="GestionBibliotecaModel.FK__Devolucio__ID_Pr__31EC6D26" ManuallyRouted="false" />
+        <AssociationConnector Association="GestionBibliotecaModel.FK__Prestamos__ID_Li__2D27B809" ManuallyRouted="false" />
+        <AssociationConnector Association="GestionBibliotecaModel.FK__Prestamos__ID_Pe__2E1BDC42" ManuallyRouted="false" />
+        <AssociationConnector Association="GestionBibliotecaModel.FK__Prestamos__ID_Us__2C3393D0" ManuallyRouted="false" />
+        <AssociationConnector Association="GestionBibliotecaModel.FK__Sanciones__ID_Us__29572725" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

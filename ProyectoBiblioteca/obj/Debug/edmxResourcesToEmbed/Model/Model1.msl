@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="LibreriaProyectoModelStoreContainer" CdmEntityContainer="LibreriaProyectoEntities">
+    <EntitySetMapping Name="autores">
+      <EntityTypeMapping TypeName="LibreriaProyectoModel.autores">
+        <MappingFragment StoreEntitySet="autores">
+          <ScalarProperty Name="IDAutor" ColumnName="IDAutor" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+          <ScalarProperty Name="Nacionalidad" ColumnName="Nacionalidad" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="clientes">
+      <EntityTypeMapping TypeName="LibreriaProyectoModel.clientes">
+        <MappingFragment StoreEntitySet="clientes">
+          <ScalarProperty Name="IDCliente" ColumnName="IDCliente" />
+          <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Dirección" ColumnName="Dirección" />
+          <ScalarProperty Name="Teléfono" ColumnName="Teléfono" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="detallespedidos">
+      <EntityTypeMapping TypeName="LibreriaProyectoModel.detallespedidos">
+        <MappingFragment StoreEntitySet="detallespedidos">
+          <ScalarProperty Name="IDPedido" ColumnName="IDPedido" />
+          <ScalarProperty Name="ISBN" ColumnName="ISBN" />
+          <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="librerías">
+      <EntityTypeMapping TypeName="LibreriaProyectoModel.librerías">
+        <MappingFragment StoreEntitySet="librerías">
+          <ScalarProperty Name="IDLibrería" ColumnName="IDLibrería" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Dirección" ColumnName="Dirección" />
+          <ScalarProperty Name="Ciudad" ColumnName="Ciudad" />
+          <ScalarProperty Name="Teléfono" ColumnName="Teléfono" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="libros">
+      <EntityTypeMapping TypeName="LibreriaProyectoModel.libros">
+        <MappingFragment StoreEntitySet="libros">
+          <ScalarProperty Name="ISBN" ColumnName="ISBN" />
+          <ScalarProperty Name="Título" ColumnName="Título" />
+          <ScalarProperty Name="PRECIO" ColumnName="PRECIO" />
+          <ScalarProperty Name="Autor" ColumnName="Autor" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="pedidos">
+      <EntityTypeMapping TypeName="LibreriaProyectoModel.pedidos">
+        <MappingFragment StoreEntitySet="pedidos">
+          <ScalarProperty Name="IDPedido" ColumnName="IDPedido" />
+          <ScalarProperty Name="IdCliente" ColumnName="IdCliente" />
+          <ScalarProperty Name="IDLibrería" ColumnName="IDLibrería" />
+          <ScalarProperty Name="FechaPedido" ColumnName="FechaPedido" />
+          <ScalarProperty Name="Descuento" ColumnName="Descuento" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

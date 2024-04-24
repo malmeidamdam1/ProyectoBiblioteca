@@ -1,0 +1,150 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="LibreriaProyectoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="autores">
+    <Key>
+      <PropertyRef Name="IDAutor" />
+    </Key>
+    <Property Name="IDAutor" Type="int" Nullable="false" />
+    <Property Name="Nombre" Type="nvarchar" MaxLength="50" />
+    <Property Name="Apellidos" Type="nvarchar" MaxLength="50" />
+    <Property Name="Nacionalidad" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="clientes">
+    <Key>
+      <PropertyRef Name="IDCliente" />
+    </Key>
+    <Property Name="IDCliente" Type="int" Nullable="false" />
+    <Property Name="Apellidos" Type="nvarchar" MaxLength="50" />
+    <Property Name="Nombre" Type="nvarchar" MaxLength="50" />
+    <Property Name="Dirección" Type="nvarchar" MaxLength="255" />
+    <Property Name="Teléfono" Type="nvarchar" MaxLength="30" />
+  </EntityType>
+  <EntityType Name="detallespedidos">
+    <Key>
+      <PropertyRef Name="IDPedido" />
+      <PropertyRef Name="ISBN" />
+    </Key>
+    <Property Name="IDPedido" Type="int" Nullable="false" />
+    <Property Name="ISBN" Type="nvarchar" MaxLength="13" Nullable="false" />
+    <Property Name="Cantidad" Type="float" />
+  </EntityType>
+  <EntityType Name="librerías">
+    <Key>
+      <PropertyRef Name="IDLibrería" />
+    </Key>
+    <Property Name="IDLibrería" Type="int" Nullable="false" />
+    <Property Name="Nombre" Type="nvarchar" MaxLength="50" />
+    <Property Name="Dirección" Type="nvarchar" MaxLength="255" />
+    <Property Name="Ciudad" Type="nvarchar" MaxLength="50" />
+    <Property Name="Teléfono" Type="nvarchar" MaxLength="15" />
+  </EntityType>
+  <EntityType Name="libros">
+    <Key>
+      <PropertyRef Name="ISBN" />
+    </Key>
+    <Property Name="ISBN" Type="nvarchar" MaxLength="13" Nullable="false" />
+    <Property Name="Título" Type="nvarchar" MaxLength="75" />
+    <Property Name="PRECIO" Type="decimal" Precision="19" Scale="4" />
+    <Property Name="Autor" Type="int" />
+  </EntityType>
+  <EntityType Name="pedidos">
+    <Key>
+      <PropertyRef Name="IDPedido" />
+    </Key>
+    <Property Name="IDPedido" Type="int" Nullable="false" />
+    <Property Name="IdCliente" Type="int" />
+    <Property Name="IDLibrería" Type="int" />
+    <Property Name="FechaPedido" Type="smalldatetime" />
+    <Property Name="Descuento" Type="int" />
+  </EntityType>
+  <Association Name="FK_autor">
+    <End Role="autores" Type="Self.autores" Multiplicity="0..1" />
+    <End Role="libros" Type="Self.libros" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="autores">
+        <PropertyRef Name="IDAutor" />
+      </Principal>
+      <Dependent Role="libros">
+        <PropertyRef Name="Autor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_idcliente">
+    <End Role="clientes" Type="Self.clientes" Multiplicity="0..1" />
+    <End Role="pedidos" Type="Self.pedidos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="clientes">
+        <PropertyRef Name="IDCliente" />
+      </Principal>
+      <Dependent Role="pedidos">
+        <PropertyRef Name="IdCliente" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_idlibreria">
+    <End Role="librerías" Type="Self.librerías" Multiplicity="0..1" />
+    <End Role="pedidos" Type="Self.pedidos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="librerías">
+        <PropertyRef Name="IDLibrería" />
+      </Principal>
+      <Dependent Role="pedidos">
+        <PropertyRef Name="IDLibrería" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_isbn">
+    <End Role="libros" Type="Self.libros" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="detallespedidos" Type="Self.detallespedidos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="libros">
+        <PropertyRef Name="ISBN" />
+      </Principal>
+      <Dependent Role="detallespedidos">
+        <PropertyRef Name="ISBN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_pedido">
+    <End Role="pedidos" Type="Self.pedidos" Multiplicity="1" />
+    <End Role="detallespedidos" Type="Self.detallespedidos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="pedidos">
+        <PropertyRef Name="IDPedido" />
+      </Principal>
+      <Dependent Role="detallespedidos">
+        <PropertyRef Name="IDPedido" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="LibreriaProyectoModelStoreContainer">
+    <EntitySet Name="autores" EntityType="Self.autores" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="clientes" EntityType="Self.clientes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="detallespedidos" EntityType="Self.detallespedidos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="librerías" EntityType="Self.librerías" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="libros" EntityType="Self.libros" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="pedidos" EntityType="Self.pedidos" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_autor" Association="Self.FK_autor">
+      <End Role="autores" EntitySet="autores" />
+      <End Role="libros" EntitySet="libros" />
+    </AssociationSet>
+    <AssociationSet Name="FK_idcliente" Association="Self.FK_idcliente">
+      <End Role="clientes" EntitySet="clientes" />
+      <End Role="pedidos" EntitySet="pedidos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_idlibreria" Association="Self.FK_idlibreria">
+      <End Role="librerías" EntitySet="librerías" />
+      <End Role="pedidos" EntitySet="pedidos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_isbn" Association="Self.FK_isbn">
+      <End Role="libros" EntitySet="libros" />
+      <End Role="detallespedidos" EntitySet="detallespedidos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_pedido" Association="Self.FK_pedido">
+      <End Role="pedidos" EntitySet="pedidos" />
+      <End Role="detallespedidos" EntitySet="detallespedidos" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

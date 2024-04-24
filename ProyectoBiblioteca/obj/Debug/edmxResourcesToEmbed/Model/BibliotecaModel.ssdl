@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="GestionBibliotecaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Devoluciones">
+    <Key>
+      <PropertyRef Name="ID_Devolucion" />
+    </Key>
+    <Property Name="ID_Devolucion" Type="int" Nullable="false" />
+    <Property Name="ID_Prestamo" Type="int" />
+    <Property Name="FechaDevolucion" Type="date" />
+  </EntityType>
+  <EntityType Name="Libros">
+    <Key>
+      <PropertyRef Name="ISBN" />
+    </Key>
+    <Property Name="ISBN" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Titulo" Type="nvarchar" MaxLength="100" />
+    <Property Name="Autor" Type="nvarchar" MaxLength="100" />
+    <Property Name="Genero" Type="nvarchar" MaxLength="50" />
+    <Property Name="Anio" Type="int" />
+    <Property Name="Editorial" Type="nvarchar" MaxLength="100" />
+    <Property Name="Existencias" Type="int" />
+  </EntityType>
+  <EntityType Name="Peliculas">
+    <Key>
+      <PropertyRef Name="ID_Pelicula" />
+    </Key>
+    <Property Name="ID_Pelicula" Type="int" Nullable="false" />
+    <Property Name="Titulo" Type="nvarchar" MaxLength="100" />
+    <Property Name="Director" Type="nvarchar" MaxLength="100" />
+    <Property Name="Genero" Type="nvarchar" MaxLength="50" />
+    <Property Name="Anio" Type="int" />
+    <Property Name="Duracion" Type="int" />
+    <Property Name="Existencias" Type="int" />
+  </EntityType>
+  <EntityType Name="Prestamos">
+    <Key>
+      <PropertyRef Name="ID_Prestamo" />
+    </Key>
+    <Property Name="ID_Prestamo" Type="int" Nullable="false" />
+    <Property Name="ID_Usuario" Type="int" />
+    <Property Name="ID_Libro" Type="nvarchar" MaxLength="20" />
+    <Property Name="ID_Pelicula" Type="int" />
+    <Property Name="FechaPrestamo" Type="date" />
+    <Property Name="FechaDevolucion" Type="date" />
+  </EntityType>
+  <EntityType Name="Sanciones">
+    <Key>
+      <PropertyRef Name="ID_Sancion" />
+    </Key>
+    <Property Name="ID_Sancion" Type="int" Nullable="false" />
+    <Property Name="ID_Usuario" Type="int" />
+    <Property Name="Motivo" Type="nvarchar" MaxLength="100" />
+    <Property Name="FechaSancion" Type="date" />
+    <Property Name="FechaFinSancion" Type="date" />
+  </EntityType>
+  <EntityType Name="Usuarios">
+    <Key>
+      <PropertyRef Name="ID_Usuario" />
+    </Key>
+    <Property Name="ID_Usuario" Type="int" Nullable="false" />
+    <Property Name="Nombre" Type="nvarchar" MaxLength="50" />
+    <Property Name="Apellido" Type="nvarchar" MaxLength="50" />
+    <Property Name="CorreoElectronico" Type="nvarchar" MaxLength="100" />
+    <Property Name="Telefono" Type="nvarchar" MaxLength="20" />
+  </EntityType>
+  <Association Name="FK__Devolucio__ID_Pr__31EC6D26">
+    <End Role="Prestamos" Type="Self.Prestamos" Multiplicity="0..1" />
+    <End Role="Devoluciones" Type="Self.Devoluciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Prestamos">
+        <PropertyRef Name="ID_Prestamo" />
+      </Principal>
+      <Dependent Role="Devoluciones">
+        <PropertyRef Name="ID_Prestamo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Prestamos__ID_Li__2D27B809">
+    <End Role="Libros" Type="Self.Libros" Multiplicity="0..1" />
+    <End Role="Prestamos" Type="Self.Prestamos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Libros">
+        <PropertyRef Name="ISBN" />
+      </Principal>
+      <Dependent Role="Prestamos">
+        <PropertyRef Name="ID_Libro" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Prestamos__ID_Pe__2E1BDC42">
+    <End Role="Peliculas" Type="Self.Peliculas" Multiplicity="0..1" />
+    <End Role="Prestamos" Type="Self.Prestamos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Peliculas">
+        <PropertyRef Name="ID_Pelicula" />
+      </Principal>
+      <Dependent Role="Prestamos">
+        <PropertyRef Name="ID_Pelicula" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Prestamos__ID_Us__2C3393D0">
+    <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="0..1" />
+    <End Role="Prestamos" Type="Self.Prestamos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuarios">
+        <PropertyRef Name="ID_Usuario" />
+      </Principal>
+      <Dependent Role="Prestamos">
+        <PropertyRef Name="ID_Usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Sanciones__ID_Us__29572725">
+    <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="0..1" />
+    <End Role="Sanciones" Type="Self.Sanciones" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuarios">
+        <PropertyRef Name="ID_Usuario" />
+      </Principal>
+      <Dependent Role="Sanciones">
+        <PropertyRef Name="ID_Usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="GestionBibliotecaModelStoreContainer">
+    <EntitySet Name="Devoluciones" EntityType="Self.Devoluciones" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Libros" EntityType="Self.Libros" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Peliculas" EntityType="Self.Peliculas" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Prestamos" EntityType="Self.Prestamos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Sanciones" EntityType="Self.Sanciones" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Devolucio__ID_Pr__31EC6D26" Association="Self.FK__Devolucio__ID_Pr__31EC6D26">
+      <End Role="Prestamos" EntitySet="Prestamos" />
+      <End Role="Devoluciones" EntitySet="Devoluciones" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Prestamos__ID_Li__2D27B809" Association="Self.FK__Prestamos__ID_Li__2D27B809">
+      <End Role="Libros" EntitySet="Libros" />
+      <End Role="Prestamos" EntitySet="Prestamos" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Prestamos__ID_Pe__2E1BDC42" Association="Self.FK__Prestamos__ID_Pe__2E1BDC42">
+      <End Role="Peliculas" EntitySet="Peliculas" />
+      <End Role="Prestamos" EntitySet="Prestamos" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Prestamos__ID_Us__2C3393D0" Association="Self.FK__Prestamos__ID_Us__2C3393D0">
+      <End Role="Usuarios" EntitySet="Usuarios" />
+      <End Role="Prestamos" EntitySet="Prestamos" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Sanciones__ID_Us__29572725" Association="Self.FK__Sanciones__ID_Us__29572725">
+      <End Role="Usuarios" EntitySet="Usuarios" />
+      <End Role="Sanciones" EntitySet="Sanciones" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
