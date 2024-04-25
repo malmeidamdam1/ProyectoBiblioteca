@@ -37,7 +37,7 @@ namespace ProyectoBiblioteca
             // Si no es un ISBN, buscar por título
             if (libroEncontrado == null)
             {
-                libroEncontrado = bbdd.Libros.FirstOrDefault(libro => libro.Titulo.Contains(textoBusqueda));
+                libroEncontrado = bbdd.Libros.FirstOrDefault(libro => libro.Titulo == (textoBusqueda));
             }
 
             if (libroEncontrado != null)
@@ -55,7 +55,7 @@ namespace ProyectoBiblioteca
         {
             string textoBusqueda = txtBusqueda.Text.Trim();
 
-            var peliculasPorTitulo = bbdd.Peliculas.Where(pelicula => pelicula.Titulo.Contains(textoBusqueda));
+            var peliculasPorTitulo = bbdd.Peliculas.Where(pelicula => pelicula.Titulo == (textoBusqueda));
 
             var peliculasPorDirector = bbdd.Peliculas.Where(pelicula => pelicula.Director.Contains(textoBusqueda));
 
