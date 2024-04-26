@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\DAM Almeida\Desktop\ProyectoBiblioteca\ProyectoBiblioteca\App.xaml
-2314988542
+3-362380839
 2851724074
-16-2046816761
+171617637677
 181614386383
-MainWindow.xaml;Usuarios.xaml;
+AgregarUsuarioVentana.xaml;MainWindow.xaml;UsuariosVentana.xaml;
 
-False
+True
 

@@ -67,9 +67,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Usuarios.xaml.cs">
-      <DependentUpon>Usuarios.xaml</DependentUpon>
+    <Compile Include="AgregarUsuarioVentana.xaml.cs">
+      <DependentUpon>AgregarUsuarioVentana.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UsuariosVentana.xaml.cs">
+      <DependentUpon>UsuariosVentana.xaml</DependentUpon>
+    </Compile>
+    <Page Include="AgregarUsuarioVentana.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -82,7 +89,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Usuarios.xaml">
+    <Page Include="UsuariosVentana.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
