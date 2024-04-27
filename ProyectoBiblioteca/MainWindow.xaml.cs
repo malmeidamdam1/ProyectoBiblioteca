@@ -24,6 +24,7 @@ namespace ProyectoBiblioteca
         public MainWindow()
         {
             InitializeComponent();
+            WindowStartupLocation = WindowStartupLocation.CenterScreen;
             bbdd = new BibliotecaModel();
         }
 
@@ -31,47 +32,65 @@ namespace ProyectoBiblioteca
         {
             string textoBusqueda = txtBusqueda.Text.Trim();
 
-            // Verificar si el texto de búsqueda es un ISBN
-            var libroEncontrado = bbdd.Libros.FirstOrDefault(libro => libro.ISBN == textoBusqueda);
-
-            // Si no es un ISBN, buscar por título
-            if (libroEncontrado == null)
+            if (!string.IsNullOrWhiteSpace(textoBusqueda))
             {
-                libroEncontrado = bbdd.Libros.FirstOrDefault(libro => libro.Titulo == (textoBusqueda));
-            }
+                var librosEncontrados = bbdd.Libros
+                    .Where(libro =>
+                    libro.ISBN == textoBusqueda ||
+                    libro.Titulo.Contains(textoBusqueda) ||
+                    libro.Autor.Contains(textoBusqueda)
+                );
 
-            if (libroEncontrado != null)
-            {
-                var librosResultados = new[] { new { ISBN = libroEncontrado.ISBN, Título = libroEncontrado.Titulo, Autor = libroEncontrado.Autor, Existencias = libroEncontrado.Existencias } };
-                gridResultados.ItemsSource = librosResultados.ToList();
+                if (librosEncontrados.Any())
+                {
+                    var librosResultados = librosEncontrados.Select(libro =>
+                        new { ISBN = libro.ISBN, Título = libro.Titulo, Autor = libro.Autor, Existencias = libro.Existencias }
+                    ).ToList();
+                    gridResultados.ItemsSource = librosResultados;
+                }
+                else
+                {
+                    MessageBox.Show("No se encontró ningún libro con el título, ISBN o autor proporcionado.");
+                }
             }
             else
             {
-                MessageBox.Show("No se encontró ningún libro con el título o ISBN proporcionado.");
+                MessageBox.Show("Ingrese un término de búsqueda antes de realizar la búsqueda.");
             }
         }
+
 
         private void buscarPelicula(object sender, RoutedEventArgs e)
         {
             string textoBusqueda = txtBusqueda.Text.Trim();
 
-            var peliculasPorTitulo = bbdd.Peliculas.Where(pelicula => pelicula.Titulo == (textoBusqueda));
-
-            var peliculasPorDirector = bbdd.Peliculas.Where(pelicula => pelicula.Director.Contains(textoBusqueda));
-
-            // Combinar los resultados de ambas búsquedas
-            var peliculasResultados = peliculasPorTitulo.Concat(peliculasPorDirector)
-                                                        .Select(pelicula => new { Título = pelicula.Titulo, Director = pelicula.Director, Existencias = pelicula.Existencias })
-                                                        .ToList();
-
-            if (peliculasResultados.Any())
+            if (!string.IsNullOrWhiteSpace(textoBusqueda))
             {
-                gridResultados.ItemsSource = peliculasResultados;
+                var peliculasResultados = bbdd.Peliculas
+                .Where(pelicula => pelicula.Titulo == textoBusqueda || pelicula.Director == textoBusqueda)
+                .Select(pelicula => new { Título = pelicula.Titulo, Director = pelicula.Director, Existencias = pelicula.Existencias })
+                .ToList();
+
+                if (peliculasResultados.Any())
+                {
+                    gridResultados.ItemsSource = peliculasResultados;
+                }
+                else
+                {
+                    MessageBox.Show("No se encontraron películas con el título o director proporcionado.");
+                }
             }
             else
             {
-                MessageBox.Show("No se encontraron películas con el título o director proporcionado.");
+                MessageBox.Show("Ingrese un término de búsqueda antes de realizar la búsqueda.");
             }
         }
+
+
+        private void MostrarAyuda_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("El parámetro admite:\n\nLibros: Título, ISBN, Autor\nPelículas: Título, Director", "Ayuda", MessageBoxButton.OK, MessageBoxImage.Question);
+        }
+
     }
 }
