@@ -40,23 +40,16 @@
 
             <Label Content="Ingrese el parámetro para la búsqueda" HorizontalAlignment="Center" Margin="303,70,262,0" VerticalAlignment="Top" Height="32" Width="279" FontSize="15"/>
 
-
             <TextBox x:Name="txtBusqueda" HorizontalAlignment="Center" Height="20" Margin="0,100,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="350"/>
 
+            <DataGrid x:Name="gridResultados" AutoGenerateColumns="True" CanUserResizeColumns="False" CanUserResizeRows="False" CanUserReorderColumns="False" IsReadOnly="True" 
+                      Margin="76,210,106,32" MaxHeight="300" MaxWidth="800" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto" />
 
-            <DataGrid x:Name="gridResultados" AutoGenerateColumns="True" CanUserResizeColumns="False" CanUserResizeRows="False" CanUserReorderColumns="False" IsReadOnly="True" Margin="76,210,106,32" MaxHeight="300" MaxWidth="800" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto"/>
+            <Button Content="Buscar Libro" HorizontalAlignment="Left" Margin="450,144,0,0" VerticalAlignment="Top" Width="200" Click="buscarLibro" Height="43"/>
 
-
-            <Button Content="Buscar Libro" HorizontalAlignment="Left" Margin="96,164,0,0" VerticalAlignment="Top" Width="152" Click="buscarLibro"/>
-
-            <Button Content="Buscar Pelicula" HorizontalAlignment="Left" Margin="313,164,0,0" VerticalAlignment="Top" Width="180" Click="buscarPelicula"/>
-
-            <Button Content="Ver todo el catalogo" HorizontalAlignment="Left" Margin="538,164,0,0" VerticalAlignment="Top" Width="200"/>
-
-
+            <Button Content="Buscar Pelicula" HorizontalAlignment="Left" Margin="198,144,0,0" VerticalAlignment="Top" Width="200" Click="buscarPelicula" Height="43" />
 
         </Grid>
-
 
     </Grid>
 </Window>

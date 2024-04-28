@@ -32,4 +32,6 @@ namespace ProyectoBiblioteca.Model
         public virtual DbSet<Sanciones> Sanciones { get; set; }
         public virtual DbSet<Usuarios> Usuarios { get; set; }
     }
+
+
 }
