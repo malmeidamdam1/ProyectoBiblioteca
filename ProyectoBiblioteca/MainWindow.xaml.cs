@@ -95,47 +95,46 @@ namespace ProyectoBiblioteca
         }
 
 
-
         private void MostrarDetallesObra(object sender, MouseButtonEventArgs e)
         {
-            // Verificar si hay algún elemento seleccionado en el DataGrid
             if (gridResultados.SelectedItem != null)
             {
-                // Obtener el elemento seleccionado del DataGrid
                 dynamic obraSeleccionada = gridResultados.SelectedItem;
-
-                // Verificar si la obra seleccionada es un libro (si tiene un ISBN)
-                if (obraSeleccionada.ISBN != null)
+                try
                 {
-                    // Es un libro, buscarlo en la tabla de libros
-                    string isbn = obraSeleccionada.ISBN;
+                    if (obraSeleccionada.ISBN != null)
+                    {
+                        string isbn = obraSeleccionada.ISBN;
 
-                    // Cambiar el nombre de la variable libro a libroEncontrado
-                    var libroEncontrado = bbdd.Libros.FirstOrDefault(libro => libro.ISBN == isbn);
-                    if (libroEncontrado != null)
-                    {
-                        // Mostrar detalles del libro
-                        MostrarDetallesLibro(libroEncontrado);
-                    }
-                    else
-                    {
-                        MessageBox.Show("No se encontró el libro en la base de datos.");
+                        var libroEncontrado = bbdd.Libros.FirstOrDefault(libro => libro.ISBN == isbn);
+                        if (libroEncontrado != null)
+                        {
+                            MostrarDetallesLibro(libroEncontrado);
+                        }
+                        else
+                        {
+                            MessageBox.Show("No se encontró el libro en la base de datos.");
+                        }
                     }
                 }
-                else
+                catch (Microsoft.CSharp.RuntimeBinder.RuntimeBinderException)
                 {
-                    // Es una película, buscarla en la tabla de películas
-                    string isbn = obraSeleccionada.ISBN;
+                    //Si sale exception, no tiene ISBN, es película
+                    //Nota para obraSeleccionada debes usar los nombres que tienen en el dataGrid no en la clase Libros o Peliculas
+                    if (obraSeleccionada.Título != null)
+                    {
+                        string titulo = obraSeleccionada.Título;
 
-                    var peliculaEncontrada = bbdd.Peliculas.FirstOrDefault(pelicula => pelicula.Titulo == isbn);
-                    if (peliculaEncontrada != null)
-                    {
-                        // Mostrar detalles de la película
-                        MostrarDetallesPelicula(peliculaEncontrada);
-                    }
-                    else
-                    {
-                        MessageBox.Show("No se encontró la película en la base de datos.");
+                        var peliculaEncontrada = bbdd.Peliculas.FirstOrDefault(pelicula => pelicula.Titulo == titulo);
+                        if (peliculaEncontrada != null)
+                        {
+                            // Mostrar detalles de la película
+                            MostrarDetallesPelicula(peliculaEncontrada);
+                        }
+                        else
+                        {
+                            MessageBox.Show("No se encontró la película en la base de datos.");
+                        }
                     }
                 }
             }
