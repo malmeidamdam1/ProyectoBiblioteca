@@ -20,21 +20,24 @@ namespace ProyectoBiblioteca
 {
     public partial class MainWindow : Window
     {
-        //private BibliotecaModel bbdd;
+        private BibliotecaModel bbdd;
 
         public MainWindow()
         {
             InitializeComponent();
-            //WindowStartupLocation = WindowStartupLocation.CenterScreen;
-            //bbdd = new BibliotecaModel();
+            WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            bbdd = new BibliotecaModel();
         }
 
-        private void sidebar_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void Menu_Seleccionado(object sender, SelectionChangedEventArgs e)
         {
             var selected = sidebar.SelectedItem as NavButton;
 
             navFrame.Navigate(selected.Navlink);
         }
+
+
+
 
     }
 }

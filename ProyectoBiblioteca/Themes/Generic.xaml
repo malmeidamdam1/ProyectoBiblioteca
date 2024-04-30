@@ -13,28 +13,33 @@
 
                     <Border x:Name="back" CornerRadius="8" Padding="{TemplateBinding Padding}" Background="Transparent" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
                         <Image x:Name="icon" Height="50" Width="50" Stretch="Uniform" Source="{TemplateBinding Icon}">
+                            
+                            <!--sombreado por defecto-->
                             <Image.Effect>
-                                <DropShadowEffect ShadowDepth="0" BlurRadius="20" Color="red" Opacity="0"/>
+                                <DropShadowEffect ShadowDepth="0" BlurRadius="10" Color="#FFFFFF" Opacity="1"/>
                             </Image.Effect>
+                            
                         </Image>
                     </Border>
 
+
                     <ControlTemplate.Triggers>
 
+                        <!--//Comportamiento al tener el raton encima-->
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" TargetName="back" Value="#d0ebff"/>
+                            <!--<Setter Property="Background" TargetName="back" Value="#FFFFFF"/>-->
                             <Setter TargetName="icon" Property="Effect">
                                 <Setter.Value>
-                                    <DropShadowEffect ShadowDepth="0" BlurRadius="20" Color="#2a84f1" Opacity="0.5"/>
+                                    <DropShadowEffect ShadowDepth="0" BlurRadius="10" Color="#F9F871" Opacity="10"/>
                                 </Setter.Value>
                             </Setter>
                         </Trigger>
 
-                            <!--//Comportamiento al seleccionar el boton-->
+                        <!--//Comportamiento al seleccionar el boton-->
                         <Trigger Property="IsSelected" Value="True">
                             <Setter TargetName="icon" Property="Effect">
                                 <Setter.Value>
-                                    <DropShadowEffect ShadowDepth="0" BlurRadius="10" Color="#2a84f1" Opacity="0.5"/>
+                                    <DropShadowEffect ShadowDepth="0" BlurRadius="10" Color="#F9F871" Opacity="10"/>
                                 </Setter.Value>
                             </Setter>
                         </Trigger>
@@ -43,4 +48,6 @@
             </Setter.Value>
         </Setter>
     </Style>
+    
+    
 </ResourceDictionary>
