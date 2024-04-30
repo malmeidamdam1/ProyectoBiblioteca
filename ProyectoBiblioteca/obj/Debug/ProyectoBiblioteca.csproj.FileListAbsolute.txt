@@ -21,6 +21,6 @@ C:\Users\DAM Almeida\Desktop\ProyectoBiblioteca\ProyectoBiblioteca\obj\Debug\Pro
 C:\Users\DAM Almeida\Desktop\ProyectoBiblioteca\ProyectoBiblioteca\obj\Debug\MainWindow.g.cs
 C:\Users\DAM Almeida\Desktop\ProyectoBiblioteca\ProyectoBiblioteca\obj\Debug\MainWindow.baml
 C:\Users\DAM Almeida\Desktop\ProyectoBiblioteca\ProyectoBiblioteca\obj\Debug\AgregarUsuarioVentana.g.cs
-C:\Users\DAM Almeida\Desktop\ProyectoBiblioteca\ProyectoBiblioteca\obj\Debug\UsuariosVentana.g.cs
 C:\Users\DAM Almeida\Desktop\ProyectoBiblioteca\ProyectoBiblioteca\obj\Debug\AgregarUsuarioVentana.baml
-C:\Users\DAM Almeida\Desktop\ProyectoBiblioteca\ProyectoBiblioteca\obj\Debug\UsuariosVentana.baml
+C:\Users\DAM Almeida\Desktop\ProyectoBiblioteca\ProyectoBiblioteca\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\DAM Almeida\Desktop\ProyectoBiblioteca\ProyectoBiblioteca\obj\Debug\Themes\Generic.baml
