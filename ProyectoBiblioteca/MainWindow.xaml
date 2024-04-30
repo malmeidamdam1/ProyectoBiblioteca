@@ -4,21 +4,23 @@
         xmlns:local="clr-namespace:ProyectoBiblioteca"
         Title="MainWindow" Height="500" Width="1000" ResizeMode="NoResize"  >
 
-    <Grid Background="#354e68">
+    <Grid Background="#022038">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="100"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
 
-        <Image Source="Images\logoBiblioteca.jpg" Stretch="Uniform" Margin="0,20,0,0" VerticalAlignment="Top" Height="75" Width="120"/>
+        <Image  Source="/Images/logoBiblioteca.jpg" Stretch="Uniform" Margin="0,20,0,0" VerticalAlignment="Top" Height="75" Width="120"/>
 
 
-        <ListBox Grid.Column="0" x:Name="sidebar" Margin="0,110,0,50" BorderThickness="0" Background="#354e68">
-            <local:NavButton Margin="3" Padding="6" Icon="/Images/logoBiblioteca.jpg"/>
-            <local:NavButton Margin="3" Padding="6" Icon="/Images/logoBiblioteca.jpg"/>
-            <local:NavButton Margin="3" Padding="6" Icon="/Images/logoBiblioteca.jpg"/>
-            <local:NavButton Margin="3" Padding="6" Icon="/Images/logoBiblioteca.jpg"/>
+        <ListBox Grid.Column="0" SelectionChanged="sidebar_SelectionChanged" x:Name="sidebar" Margin="0,110,0,50" BorderThickness="0">
+            <local:NavButton Navlink="/Pages/VentanaInventario.xaml" Margin="3" Padding="6" Icon="/Images/Icons/caja.png"/>
+            <local:NavButton Margin="3" Padding="6" Icon="/Images/Icons/catalogo.png"/>
+            <local:NavButton Margin="3" Padding="6" Icon="/Images/Icons/usuarios.png"/>
+            <local:NavButton Margin="3" Padding="6" Icon="/Images/Icons/prestamo.png"/>
+           
+           
             <!--<local:NavButton Navlink="/Pages/Page2.xaml" Margin="3" Padding="6" Icon="/Assets/Icono2.png"/>-->
         </ListBox>
 
@@ -27,7 +29,7 @@
 
         <!-- Parte principal -->
 
-        <Frame Grid.Column="1" x:Name="navFrame" Background="#022038" >
+        <Frame Grid.Column="1" x:Name="navFrame" Background="#4d647a" >
 
         </Frame>
 

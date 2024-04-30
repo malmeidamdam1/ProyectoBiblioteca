@@ -27,7 +27,13 @@ namespace ProyectoBiblioteca
             InitializeComponent();
             //WindowStartupLocation = WindowStartupLocation.CenterScreen;
             //bbdd = new BibliotecaModel();
+        }
 
+        private void sidebar_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var selected = sidebar.SelectedItem as NavButton;
+
+            navFrame.Navigate(selected.Navlink);
         }
 
     }

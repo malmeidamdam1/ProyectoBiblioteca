@@ -14,15 +14,15 @@
                     <Border x:Name="back" CornerRadius="8" Padding="{TemplateBinding Padding}" Background="Transparent" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
                         <Image x:Name="icon" Height="50" Width="50" Stretch="Uniform" Source="{TemplateBinding Icon}">
                             <Image.Effect>
-                                <DropShadowEffect ShadowDepth="0" BlurRadius="20" Color="#2a84f1" Opacity="0"/>
+                                <DropShadowEffect ShadowDepth="0" BlurRadius="20" Color="red" Opacity="0"/>
                             </Image.Effect>
                         </Image>
                     </Border>
 
                     <ControlTemplate.Triggers>
 
-                        <!--//Comportamiento al tener el mouse encima del boton-->
                         <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" TargetName="back" Value="#d0ebff"/>
                             <Setter TargetName="icon" Property="Effect">
                                 <Setter.Value>
                                     <DropShadowEffect ShadowDepth="0" BlurRadius="20" Color="#2a84f1" Opacity="0.5"/>
@@ -30,7 +30,7 @@
                             </Setter>
                         </Trigger>
 
-                        <!--//Comportamiento al seleccionar el boton-->
+                            <!--//Comportamiento al seleccionar el boton-->
                         <Trigger Property="IsSelected" Value="True">
                             <Setter TargetName="icon" Property="Effect">
                                 <Setter.Value>
