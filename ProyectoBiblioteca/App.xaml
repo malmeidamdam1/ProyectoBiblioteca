@@ -10,9 +10,9 @@
             <Setter Property="FontFamily" Value="Arial"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
             <Setter Property="Foreground" Value="#DBDBDB"/>
-
-
         </Style>
+
+     
 
 
         <Style TargetType="Button">

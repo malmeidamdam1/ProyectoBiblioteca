@@ -1,5 +1,6 @@
 ﻿using ProyectoBiblioteca;
 using ProyectoBiblioteca.Model;
+using ProyectoBiblioteca.Pages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,13 +32,45 @@ namespace ProyectoBiblioteca
 
         private void Menu_Seleccionado(object sender, SelectionChangedEventArgs e)
         {
-            var selected = sidebar.SelectedItem as NavButton;
-
-            navFrame.Navigate(selected.Navlink);
+            if (sidebar.SelectedItem != null)
+            {
+                var selected = sidebar.SelectedItem as NavButton;
+                navFrame.Navigate(selected.Navlink);
+            }
         }
 
+        private void logoImage_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            navFrame.Content = null;
 
+            // Crear una instancia de la página de inicio y cargarla en el Frame
+            labelInicio.Visibility = Visibility.Visible;
+            textBlockInicio.Visibility = Visibility.Visible;
 
+            // Deseleccionar cualquier elemento del ListBox
+            if (sidebar.SelectedItem != null)
+            {
+                sidebar.SelectedItem = null;
+            }
+        }
 
-    }
+        private void navFrame_Navigated(object sender, NavigationEventArgs e)
+        {
+            // Verificar si el contenido del Frame es una página
+            if (navFrame.Content is Page)
+            {
+                // Ocultar elementos de la MainWindow
+                labelInicio.Visibility = Visibility.Collapsed;
+                textBlockInicio.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                // Mostrar elementos de la MainWindow
+                logoImage.Visibility = Visibility.Visible;
+                sidebar.Visibility = Visibility.Visible;
+                labelInicio.Visibility = Visibility.Visible;
+            }
+        }
+
+       }
 }

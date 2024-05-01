@@ -13,18 +13,16 @@
 
                     <Border x:Name="back" CornerRadius="8" Padding="{TemplateBinding Padding}" Background="Transparent" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
                         <Image x:Name="icon" Height="50" Width="50" Stretch="Uniform" Source="{TemplateBinding Icon}">
-                            
+
                             <!--sombreado por defecto-->
                             <Image.Effect>
                                 <DropShadowEffect ShadowDepth="0" BlurRadius="10" Color="#FFFFFF" Opacity="1"/>
                             </Image.Effect>
-                            
+
                         </Image>
                     </Border>
 
-
                     <ControlTemplate.Triggers>
-
                         <!--//Comportamiento al tener el raton encima-->
                         <Trigger Property="IsMouseOver" Value="True">
                             <!--<Setter Property="Background" TargetName="back" Value="#FFFFFF"/>-->

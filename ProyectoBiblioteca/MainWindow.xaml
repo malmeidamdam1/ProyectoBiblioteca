@@ -12,7 +12,7 @@
 
 
         <!--LOGO IMAGEN-->
-        <Image x:Name="logoImage" Source="/Images/logoBiblioteca.jpg" Stretch="Uniform" Margin="0,10,0,0" VerticalAlignment="Top" Height="70" Width="120">
+        <Image x:Name="logoImage" Source="/Images/logoBiblioteca.jpg" Stretch="Uniform" Margin="0,10,0,0" VerticalAlignment="Top" Height="70" Width="120" MouseLeftButtonDown="logoImage_MouseLeftButtonDown">
             <Image.Effect>
                 <DropShadowEffect ShadowDepth="0" BlurRadius="10" Color="#DEA01E" Opacity="0"/>
             </Image.Effect>
@@ -38,7 +38,7 @@
 
         <!--Menu-->
         <ListBox Grid.Column="0" SelectionChanged="Menu_Seleccionado" x:Name="sidebar" Margin="0,85,0,30" BorderThickness="0" Background="#022038" ScrollViewer.VerticalScrollBarVisibility="Disabled">
-            <local:NavButton Navlink="/Pages/VentanaInventario.xaml"  Margin="3" Padding="6" Icon="/Images/Icons/catalogo.png"/>
+            <local:NavButton Navlink="/Pages/VentanaCatalogo.xaml"  Margin="3" Padding="6" Icon="/Images/Icons/catalogo.png"/>
             <local:NavButton  Margin="3" Padding="6" Icon="/Images/Icons/stock.png"/>
             <local:NavButton  Margin="3" Padding="6" Icon="/Images/Icons/users.png"/>
             <local:NavButton  Margin="3" Padding="6" Icon="/Images/Icons/prestar.png"/>
@@ -49,10 +49,22 @@
         <!-- Línea de separación -->
         <Border Grid.Column="0" BorderBrush="#6DA6C9" BorderThickness="0,0,5,0" VerticalAlignment="Stretch"/>
 
+
+
         <!-- Page cambiante -->
-        <Frame Grid.Column="1" x:Name="navFrame" Background="#4d647a" NavigationUIVisibility="Hidden"/>
+        <Frame Grid.Column="1" x:Name="navFrame" Background="#4d647a" NavigationUIVisibility="Hidden" Navigated="navFrame_Navigated"/>
 
+        <!-- Texto Explicativo -->
 
+        <TextBlock Grid.Column="1" TextWrapping="Wrap" x:Name="textBlockInicio" 
+                   Text="Esta aplicación de gestión de bibliotecas te permite administrar el catálogo de libros y películas, realizar préstamos, gestionar inventario y más. ¡Explora las diferentes secciones para empezar!" 
+                  FontSize="24" HorizontalAlignment="Center" 
+                   VerticalAlignment="Center" Margin="32,114,40,154"
+                   Height="auto" Width="auto" 
+                   Foreground="#DBDBDB"
+                   FontFamily="Arial"
+                   />
+        <Label x:Name="labelInicio" Content="GESTIÓN BIBLIOTECA - INICIO" Grid.Column="1" HorizontalAlignment="Center" Margin="230,10,85,0" VerticalAlignment="Top" Height="70" Width="490" FontWeight="Bold" FontSize="24"/>
 
 
 

@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 
 namespace ProyectoBiblioteca.Pages
 {
-    public partial class VentanaInventario : Page
+    public partial class VentanaCatalogo : Page
     {
         private BibliotecaModel bbdd;
 
-        public VentanaInventario()
+        public VentanaCatalogo()
         {
             InitializeComponent();
             bbdd = new BibliotecaModel();
