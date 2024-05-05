@@ -27,7 +27,7 @@ namespace ProyectoBiblioteca.Pages
             gridResultados.MouseDoubleClick += MostrarDetallesObra;
         }
 
-        private void buscarLibro(object sender, RoutedEventArgs e)
+        private void BuscarLibro(object sender, RoutedEventArgs e)
         {
             string textoBusqueda = txtBusqueda.Text.Trim();
 
@@ -36,7 +36,7 @@ namespace ProyectoBiblioteca.Pages
                 var librosEncontrados = bbdd.Libros
                     .Where(libro =>
                     libro.ISBN == textoBusqueda ||
-                    libro.Titulo == (textoBusqueda) ||
+                    libro.Titulo.Contains(textoBusqueda) ||
                     libro.Autor.Contains(textoBusqueda)
                 );
 
@@ -59,14 +59,14 @@ namespace ProyectoBiblioteca.Pages
         }
 
 
-        private void buscarPelicula(object sender, RoutedEventArgs e)
+        private void BuscarPelicula(object sender, RoutedEventArgs e)
         {
             string textoBusqueda = txtBusqueda.Text.Trim();
 
             if (!string.IsNullOrWhiteSpace(textoBusqueda) && textoBusqueda.Length > 1)
             {
                 var peliculasResultados = bbdd.Peliculas
-                .Where(pelicula => pelicula.Titulo == textoBusqueda || pelicula.Director.Contains(textoBusqueda))
+                .Where(pelicula => pelicula.Titulo.Contains(textoBusqueda) || pelicula.Director.Contains(textoBusqueda))
                 .Select(pelicula => new { Título = pelicula.Titulo, Director = pelicula.Director, Existencias = pelicula.Existencias })
                 .ToList();
 

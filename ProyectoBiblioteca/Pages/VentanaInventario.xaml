@@ -1,0 +1,27 @@
+﻿<Page x:Class="ProyectoBiblioteca.Pages.VentanaInventario"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ProyectoBiblioteca.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="VentanaInventario">
+
+    <Grid Background="#4d647a">
+        <Label x:Name="labelPrincipal" Content="GESTIÓN BIBLIOTECA - INVENTARIO" HorizontalAlignment="Center" Margin="180,10,130,0" VerticalAlignment="Top" Height="70" Width="490" FontWeight="Bold" FontSize="24" />
+
+        <DataGrid x:Name="gridResultados" AutoGenerateColumns="True" CanUserResizeColumns="False" CanUserResizeRows="False" CanUserReorderColumns="False" IsReadOnly="True" 
+                      Margin="97,216,68,26" MaxHeight="300" MaxWidth="800" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto" />
+
+        <Button Content="Agregar libro" HorizontalAlignment="Left" Margin="78,85,0,0" VerticalAlignment="Top" Width="200" Click="AgregarLibro" Height="43" />
+        <Button Content="Agregar película" HorizontalAlignment="Left" Margin="78,147,0,0" VerticalAlignment="Top" Width="200" Click="AgregarPelicula" Height="43"/>
+        
+        <Button Content="Ver todos los libros" HorizontalAlignment="Left" Margin="310,85,0,0" VerticalAlignment="Top" Width="220" Click="VerLibros" Height="43"/>
+        <Button Content="Ver todas las películas" HorizontalAlignment="Left" Margin="310,147,0,0" VerticalAlignment="Top" Width="220" Click="VerPeliculas" Height="43"/>
+        
+        <Button Content="Eliminar libro" HorizontalAlignment="Left" Margin="570,85,0,0" VerticalAlignment="Top" Width="200" Click="EliminarLibro" Height="43"/>
+        <Button Content="Eliminar película" HorizontalAlignment="Left" Margin="570,147,0,0" VerticalAlignment="Top" Width="200" Click="EliminarPeliculas" Height="43"/>
+
+    </Grid>
+</Page>

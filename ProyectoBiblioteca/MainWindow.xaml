@@ -39,7 +39,7 @@
         <!--Menu-->
         <ListBox Grid.Column="0" SelectionChanged="Menu_Seleccionado" x:Name="sidebar" Margin="0,85,0,30" BorderThickness="0" Background="#022038" ScrollViewer.VerticalScrollBarVisibility="Disabled">
             <local:NavButton Navlink="/Pages/VentanaCatalogo.xaml"  Margin="3" Padding="6" Icon="/Images/Icons/catalogo.png"/>
-            <local:NavButton  Margin="3" Padding="6" Icon="/Images/Icons/stock.png"/>
+            <local:NavButton Navlink="/Pages/VentanaInventario.xaml"  Margin="3" Padding="6" Icon="/Images/Icons/stock.png"/>
             <local:NavButton  Margin="3" Padding="6" Icon="/Images/Icons/users.png"/>
             <local:NavButton  Margin="3" Padding="6" Icon="/Images/Icons/prestar.png"/>
             <local:NavButton  Margin="3" Padding="6" Icon="/Images/Icons/informe.png"/>
@@ -56,15 +56,18 @@
 
         <!-- Texto Explicativo -->
 
+        <!-- Texto Explicativo -->
         <TextBlock Grid.Column="1" TextWrapping="Wrap" x:Name="textBlockInicio" 
-                   Text="Esta aplicación de gestión de bibliotecas te permite administrar el catálogo de libros y películas, realizar préstamos, gestionar inventario y más. ¡Explora las diferentes secciones para empezar!" 
-                  FontSize="24" HorizontalAlignment="Center" 
-                   VerticalAlignment="Center" Margin="32,114,40,154"
-                   Height="auto" Width="auto" 
-                   Foreground="#DBDBDB"
-                   FontFamily="Arial"
+                   Text="Empieza a gestionar tu biblioteca con esta sencilla aplicación que te permite administrar el catálogo de libros y películas, realizar préstamos, gestionar inventario,  usuarios y mucho más."
+                   FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,115,42,201"
+                   Height="150" Width="800" Foreground="#DBDBDB" FontFamily="Arial"
                    />
-        <Label x:Name="labelInicio" Content="GESTIÓN BIBLIOTECA - INICIO" Grid.Column="1" HorizontalAlignment="Center" Margin="230,10,85,0" VerticalAlignment="Top" Height="70" Width="490" FontWeight="Bold" FontSize="24"/>
+        <Label x:Name="labelInicio" Content="GESTIÓN BIBLIOTECA - INICIO" Grid.Column="1" HorizontalAlignment="Center" Margin="222,37,182,0" VerticalAlignment="Top" Height="70" Width="490" FontWeight="Bold" FontSize="24"/>
+        <Button Content="Acerca de" Name="botonInicio1" Grid.Column="1" HorizontalAlignment="Left" Margin="34,292,0,0" VerticalAlignment="Top" Width="250" Height="70"/>
+        <Button Content="Preguntas frecuentes" Name="botonInicio2" Grid.Column="1" HorizontalAlignment="Left" Margin="316,292,0,0" VerticalAlignment="Top" Width="250" Height="70"/>
+        <Button Content="Reportar problema" Name="botonInicio3" Grid.Column="1" HorizontalAlignment="Left" Margin="602,292,0,0" VerticalAlignment="Top" Width="250" Height="70" RenderTransformOrigin="0.319,-2.517"/>
+
+
 
 
 

@@ -46,6 +46,10 @@ namespace ProyectoBiblioteca
             // Crear una instancia de la página de inicio y cargarla en el Frame
             labelInicio.Visibility = Visibility.Visible;
             textBlockInicio.Visibility = Visibility.Visible;
+            botonInicio1.Visibility = Visibility.Visible;
+            botonInicio2.Visibility = Visibility.Visible;
+            botonInicio3.Visibility = Visibility.Visible;
+
 
             // Deseleccionar cualquier elemento del ListBox
             if (sidebar.SelectedItem != null)
@@ -62,6 +66,9 @@ namespace ProyectoBiblioteca
                 // Ocultar elementos de la MainWindow
                 labelInicio.Visibility = Visibility.Collapsed;
                 textBlockInicio.Visibility = Visibility.Collapsed;
+                botonInicio1.Visibility = Visibility.Collapsed;
+                botonInicio2.Visibility = Visibility.Collapsed;
+                botonInicio3.Visibility = Visibility.Collapsed;
             }
             else
             {

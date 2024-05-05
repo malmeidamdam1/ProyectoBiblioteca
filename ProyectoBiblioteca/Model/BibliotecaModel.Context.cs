@@ -12,26 +12,27 @@ namespace ProyectoBiblioteca.Model
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-    
+
     public partial class BibliotecaModel : DbContext
     {
         public BibliotecaModel()
             : base("name=BibliotecaModel")
         {
         }
-    
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
         }
-    
+
         public virtual DbSet<Devoluciones> Devoluciones { get; set; }
         public virtual DbSet<Libros> Libros { get; set; }
         public virtual DbSet<Peliculas> Peliculas { get; set; }
         public virtual DbSet<Prestamos> Prestamos { get; set; }
         public virtual DbSet<Sanciones> Sanciones { get; set; }
         public virtual DbSet<Usuarios> Usuarios { get; set; }
-    }
 
+
+    }
 
 }

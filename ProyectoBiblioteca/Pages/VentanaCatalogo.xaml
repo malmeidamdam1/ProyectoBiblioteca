@@ -9,20 +9,20 @@
       Title="VentanaInventario">
 
     <Grid Background="#4d647a">
-        <Label x:Name="labelPrincipal" Content="GESTIÓN BIBLIOTECA - CATÁLOGO" HorizontalAlignment="Center" Margin="225,10,85,0" VerticalAlignment="Top" Height="70" Width="490" FontWeight="Bold" FontSize="24" />
+        <Label x:Name="labelPrincipal" Content="GESTIÓN BIBLIOTECA - CATÁLOGO" HorizontalAlignment="Center" Margin="193,10,117,0" VerticalAlignment="Top" Height="70" Width="490" FontWeight="Bold" FontSize="24" />
 
         <Button Content="?" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,10,10,0" Click="MostrarAyuda_Click"/>
 
-        <Label Content="Ingrese el parámetro para la búsqueda" HorizontalAlignment="Center" Margin="281,70,225,0" VerticalAlignment="Top" Height="32" Width="294" FontSize="15"/>
+        <Label Content="Ingrese el parámetro para la búsqueda" HorizontalAlignment="Center" Margin="270,75,236,0" VerticalAlignment="Top" Height="32" Width="294" FontSize="15"/>
 
-        <TextBox x:Name="txtBusqueda" HorizontalAlignment="Center" Height="20" Margin="0,100,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="350"/>
+        <TextBox x:Name="txtBusqueda" HorizontalAlignment="Center" Height="20" Margin="225,107,225,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="350"/>
 
         <DataGrid x:Name="gridResultados" AutoGenerateColumns="True" CanUserResizeColumns="False" CanUserResizeRows="False" CanUserReorderColumns="False" IsReadOnly="True" 
-                      Margin="109,210,73,32" MaxHeight="300" MaxWidth="800" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto" />
+                      Margin="116,211,66,31" MaxHeight="300" MaxWidth="800" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto" />
 
-        <Button Content="Buscar Libro" HorizontalAlignment="Left" Margin="450,144,0,0" VerticalAlignment="Top" Width="200" Click="buscarLibro" Height="43"/>
+        <Button Content="Buscar Libro" HorizontalAlignment="Left" Margin="416,144,0,0" VerticalAlignment="Top" Width="200" Click="BuscarLibro" Height="43"/>
 
-        <Button Content="Buscar Pelicula" HorizontalAlignment="Left" Margin="198,144,0,0" VerticalAlignment="Top" Width="200" Click="buscarPelicula" Height="43" />
+        <Button Content="Buscar Pelicula" HorizontalAlignment="Left" Margin="193,144,0,0" VerticalAlignment="Top" Width="200" Click="BuscarPelicula" Height="43" />
 
     </Grid>
 </Page>
