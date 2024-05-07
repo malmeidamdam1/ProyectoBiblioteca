@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\DAM Almeida\Desktop\ProyectoBiblioteca\ProyectoBiblioteca\App.xaml
-5-1000748218
+8194822425
 2851724074
-19-400080492
+22-1069017179
 181614386383
-AgregarUsuarioVentana.xaml;MainWindow.xaml;Pages\VentanaCatalogo.xaml;Pages\VentanaInventario.xaml;Themes\Generic.xaml;
+Ventanas\AgregarPeliculaWindow.xaml;Ventanas\AgregarUsuarioVentana.xaml;MainWindow.xaml;Pages\VentanaCatalogo.xaml;Pages\VentanaInventario.xaml;Themes\Generic.xaml;Ventanas\AgregarLibroWindow.xaml;Ventanas\EditarLibroWindow.xaml;
 
 True
 

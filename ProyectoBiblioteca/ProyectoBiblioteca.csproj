@@ -67,10 +67,23 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="AgregarUsuarioVentana.xaml.cs">
+    <Compile Include="Ventanas\AgregarPeliculaWindow.xaml.cs">
+      <DependentUpon>AgregarPeliculaWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\AgregarUsuarioVentana.xaml.cs">
       <DependentUpon>AgregarUsuarioVentana.xaml</DependentUpon>
     </Compile>
-    <Page Include="AgregarUsuarioVentana.xaml">
+    <Compile Include="Ventanas\AgregarLibroWindow.xaml.cs">
+      <DependentUpon>AgregarLibroWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Ventanas\EditarLibroWindow.xaml.cs">
+      <DependentUpon>EditarLibroWindow.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Ventanas\AgregarPeliculaWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ventanas\AgregarUsuarioVentana.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -97,6 +110,14 @@
     <Page Include="Themes\Generic.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Ventanas\AgregarLibroWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ventanas\EditarLibroWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>

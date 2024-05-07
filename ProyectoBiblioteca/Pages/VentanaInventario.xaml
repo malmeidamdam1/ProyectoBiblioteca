@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:ProyectoBiblioteca.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="500" d:DesignWidth="1000"
       Title="VentanaInventario">
 
     <Grid Background="#4d647a">
@@ -14,14 +14,16 @@
         <DataGrid x:Name="gridResultados" AutoGenerateColumns="True" CanUserResizeColumns="False" CanUserResizeRows="False" CanUserReorderColumns="False" IsReadOnly="True" 
                       Margin="97,216,68,26" MaxHeight="300" MaxWidth="800" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto" />
 
-        <Button Content="Agregar libro" HorizontalAlignment="Left" Margin="78,85,0,0" VerticalAlignment="Top" Width="200" Click="AgregarLibro" Height="43" />
-        <Button Content="Agregar película" HorizontalAlignment="Left" Margin="78,147,0,0" VerticalAlignment="Top" Width="200" Click="AgregarPelicula" Height="43"/>
+        <Button Content="Agregar libro" HorizontalAlignment="Left" Margin="27,80,0,0" VerticalAlignment="Top" Width="200" Click="AgregarLibro" Height="43" />
+        <Button Content="Agregar película" HorizontalAlignment="Left" Margin="27,147,0,0" VerticalAlignment="Top" Width="200" Click="AgregarPelicula" Height="43"/>
         
-        <Button Content="Ver todos los libros" HorizontalAlignment="Left" Margin="310,85,0,0" VerticalAlignment="Top" Width="220" Click="VerLibros" Height="43"/>
-        <Button Content="Ver todas las películas" HorizontalAlignment="Left" Margin="310,147,0,0" VerticalAlignment="Top" Width="220" Click="VerPeliculas" Height="43"/>
+        <Button Content="Ver todos los libros" HorizontalAlignment="Left" Margin="260,80,0,0" VerticalAlignment="Top" Width="220" Click="VerLibros" Height="43"/>
+        <Button Content="Ver todas las películas" HorizontalAlignment="Left" Margin="260,147,0,0" VerticalAlignment="Top" Width="220" Click="VerPeliculas" Height="43"/>
         
-        <Button Content="Eliminar libro" HorizontalAlignment="Left" Margin="570,85,0,0" VerticalAlignment="Top" Width="200" Click="EliminarLibro" Height="43"/>
-        <Button Content="Eliminar película" HorizontalAlignment="Left" Margin="570,147,0,0" VerticalAlignment="Top" Width="200" Click="EliminarPeliculas" Height="43"/>
+        <Button Content="Eliminar libro" HorizontalAlignment="Left" Margin="514,85,0,0" VerticalAlignment="Top" Width="200" Click="EliminarLibro" Height="43"/>
+        <Button Content="Eliminar película" HorizontalAlignment="Left" Margin="514,147,0,0" VerticalAlignment="Top" Width="200" Click="EliminarPeliculas" Height="43"/>
+        <Button Content="Editar libro" HorizontalAlignment="Left" Margin="762,85,0,0" VerticalAlignment="Top" Width="200" Click="EditarLibro" Height="43"/>
+        <Button Content="Editar película" HorizontalAlignment="Left" Margin="762,147,0,0" VerticalAlignment="Top" Width="200" Click="EliminarLibro" Height="43"/>
 
     </Grid>
 </Page>

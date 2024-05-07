@@ -70,13 +70,6 @@ namespace ProyectoBiblioteca
                 botonInicio2.Visibility = Visibility.Collapsed;
                 botonInicio3.Visibility = Visibility.Collapsed;
             }
-            else
-            {
-                // Mostrar elementos de la MainWindow
-                logoImage.Visibility = Visibility.Visible;
-                sidebar.Visibility = Visibility.Visible;
-                labelInicio.Visibility = Visibility.Visible;
-            }
         }
 
        }

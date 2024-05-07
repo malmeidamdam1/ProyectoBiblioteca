@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows;
 
-namespace ProyectoBiblioteca
+namespace ProyectoBiblioteca.Ventanas
 {
     public partial class AgregarUsuarioVentana : Window
     {
