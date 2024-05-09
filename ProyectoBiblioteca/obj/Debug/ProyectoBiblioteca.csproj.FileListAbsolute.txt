@@ -34,3 +34,5 @@ C:\Users\DAM Almeida\Desktop\ProyectoBiblioteca\ProyectoBiblioteca\obj\Debug\Ven
 C:\Users\DAM Almeida\Desktop\ProyectoBiblioteca\ProyectoBiblioteca\obj\Debug\Ventanas\AgregarPeliculaWindow.baml
 C:\Users\DAM Almeida\Desktop\ProyectoBiblioteca\ProyectoBiblioteca\obj\Debug\Ventanas\EditarLibroWindow.baml
 C:\Users\DAM Almeida\Desktop\ProyectoBiblioteca\ProyectoBiblioteca\obj\Debug\Ventanas\EditarLibroWindow.g.cs
+C:\Users\DAM Almeida\Desktop\ProyectoBiblioteca\ProyectoBiblioteca\obj\Debug\Ventanas\EditarPeliculaWindow.g.cs
+C:\Users\DAM Almeida\Desktop\ProyectoBiblioteca\ProyectoBiblioteca\obj\Debug\Ventanas\EditarPeliculaWindow.baml

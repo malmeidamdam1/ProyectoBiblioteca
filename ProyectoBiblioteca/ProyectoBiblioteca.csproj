@@ -79,6 +79,9 @@
     <Compile Include="Ventanas\EditarLibroWindow.xaml.cs">
       <DependentUpon>EditarLibroWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Ventanas\EditarPeliculaWindow.xaml.cs">
+      <DependentUpon>EditarPeliculaWindow.xaml</DependentUpon>
+    </Compile>
     <Page Include="Ventanas\AgregarPeliculaWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -116,6 +119,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Ventanas\EditarLibroWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ventanas\EditarPeliculaWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

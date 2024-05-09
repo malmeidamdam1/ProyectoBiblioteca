@@ -27,7 +27,7 @@ namespace ProyectoBiblioteca.Ventanas
             libroEditar = libro;
             bbdd = new BibliotecaModel();
 
-            // Mostrar los datos del libro en los campos de texto
+            // Mostrar los datos del libro pasado como parámetro en los campos de texto
             txtISBN.Text = libro.ISBN;
             txtTitulo.Text = libro.Titulo;
             txtAutor.Text = libro.Autor;

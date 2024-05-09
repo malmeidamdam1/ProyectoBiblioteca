@@ -23,7 +23,7 @@
         <Button Content="Eliminar libro" HorizontalAlignment="Left" Margin="514,85,0,0" VerticalAlignment="Top" Width="200" Click="EliminarLibro" Height="43"/>
         <Button Content="Eliminar película" HorizontalAlignment="Left" Margin="514,147,0,0" VerticalAlignment="Top" Width="200" Click="EliminarPeliculas" Height="43"/>
         <Button Content="Editar libro" HorizontalAlignment="Left" Margin="762,85,0,0" VerticalAlignment="Top" Width="200" Click="EditarLibro" Height="43"/>
-        <Button Content="Editar película" HorizontalAlignment="Left" Margin="762,147,0,0" VerticalAlignment="Top" Width="200" Click="EliminarLibro" Height="43"/>
+        <Button Content="Editar película" HorizontalAlignment="Left" Margin="762,147,0,0" VerticalAlignment="Top" Width="200" Click="EditarPelicula" Height="43"/>
 
     </Grid>
 </Page>

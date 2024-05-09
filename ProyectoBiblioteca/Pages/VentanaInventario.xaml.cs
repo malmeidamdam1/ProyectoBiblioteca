@@ -126,7 +126,6 @@ namespace ProyectoBiblioteca.Pages
             }
             else
             {
-                // Mostrar un mensaje si no se ha seleccionado ninguna película para eliminar
                 MessageBox.Show("Por favor, seleccione una película para eliminar.", "Selección requerida", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
@@ -141,28 +140,53 @@ namespace ProyectoBiblioteca.Pages
 
         private void EditarLibro(object sender, RoutedEventArgs e)
         {
-            // Verificar si se ha seleccionado un libro en el DataGrid
-            if (gridResultados.SelectedItem != null)
+            try
             {
-                // Obtener el libro seleccionado
-                Libros libroSeleccionado = (Libros)gridResultados.SelectedItem;
+                if (gridResultados.SelectedItem != null)
+                {
+                    Libros libroSeleccionado = (Libros)gridResultados.SelectedItem;
 
-                // Crear una instancia de la ventana para editar libro
-                EditarLibroWindow editarLibroWindow = new EditarLibroWindow(libroSeleccionado);
+                    EditarLibroWindow editarLibroWindow = new EditarLibroWindow(libroSeleccionado);
 
-                // Mostrar la ventana secundaria como un diálogo modal
-                editarLibroWindow.ShowDialog();
+                    editarLibroWindow.ShowDialog();
 
-                // Actualizar el DataGrid
-                ActualizarDataGridLibros();
+                    ActualizarDataGridLibros();
+                }
+                else
+                {
+                    MessageBox.Show("Por favor, seleccione un libro para editar.", "Selección requerida", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Por favor, seleccione un libro para editar.", "Selección requerida", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Error al abrir la ventana de edición de libro. " + "Por favor asegúrese de que ha seleccionado el tipo de obra adecuado", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
+        private void EditarPelicula(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (gridResultados.SelectedItem != null)
+                {
+                    Peliculas peliculaSeleccionada = (Peliculas)gridResultados.SelectedItem;
 
+                    EditarPeliculaWindow editarPeliWindow = new EditarPeliculaWindow(peliculaSeleccionada);
+
+                    editarPeliWindow.ShowDialog();
+
+                    ActualizarDataGridLibros();
+                }
+                else
+                {
+                    MessageBox.Show("Por favor, seleccione una película para editar.", "Selección requerida", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al abrir la ventana de edición de película. " + "Por favor asegúrese de que ha seleccionado el tipo de obra adecuado", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
 
     }
 
