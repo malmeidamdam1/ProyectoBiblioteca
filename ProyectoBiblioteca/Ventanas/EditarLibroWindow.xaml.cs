@@ -41,12 +41,35 @@ namespace ProyectoBiblioteca.Ventanas
         {
             try
             {
-                // Validar que el año sea un número entero
+
+                if (string.IsNullOrWhiteSpace(txtISBN.Text) || string.IsNullOrWhiteSpace(txtTitulo.Text) ||
+                     string.IsNullOrWhiteSpace(txtAutor.Text) || string.IsNullOrWhiteSpace(txtGenero.Text) ||
+                     string.IsNullOrWhiteSpace(txtAno.Text) || string.IsNullOrWhiteSpace(txtEditorial.Text) ||
+                     string.IsNullOrWhiteSpace(txtExistencias.Text))
+                {
+                    MessageBox.Show("Por favor, complete todos los campos.", "Campos incompletos", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
+                if (txtISBN.Text.Length != 13)
+                {
+                    MessageBox.Show("El ISBN debe constar de 13 dígitos.", "Error de formato", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
                 if (!int.TryParse(txtAno.Text, out _))
                 {
                     MessageBox.Show("Por favor, ingrese un año válido.", "Error de formato", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
+
+                // Validar que las existencias sean un número entero positivo
+                if (!int.TryParse(txtExistencias.Text, out int existencias) || existencias < 0)
+                {
+                    MessageBox.Show("Por favor, ingrese un número válido de existencias.", "Error de formato", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
 
                 // Obtener los datos modificados
                 libroEditar.ISBN = txtISBN.Text;

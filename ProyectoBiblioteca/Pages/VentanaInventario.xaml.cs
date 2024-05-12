@@ -35,6 +35,9 @@ namespace ProyectoBiblioteca.Pages
             agregarLibroWindow.Owner = mainWindow;
 
             agregarLibroWindow.ShowDialog();
+
+            ActualizarDataGridLibros();
+
         }
 
         private void AgregarPelicula(object sender, RoutedEventArgs e)
@@ -46,6 +49,8 @@ namespace ProyectoBiblioteca.Pages
             agregarPeliWindow.Owner = mainWindow;
 
             agregarPeliWindow.ShowDialog();
+
+            ActualizarDataGridLibros();
         }
 
         private void VerLibros(object sender, RoutedEventArgs e)
@@ -68,7 +73,8 @@ namespace ProyectoBiblioteca.Pages
         {
             if (gridResultados.SelectedItem != null)
             {
-                MessageBoxResult result = MessageBox.Show("¿Está seguro de que desea eliminar este libro?", "Confirmar eliminación", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                MessageBoxResult result = MessageBox.Show("¿Está seguro de que desea eliminar este libro?", 
+                    "Confirmar eliminación", MessageBoxButton.YesNo, MessageBoxImage.Question);
 
                 if (result == MessageBoxResult.Yes)
                 {
@@ -83,13 +89,16 @@ namespace ProyectoBiblioteca.Pages
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("Error al eliminar el libro: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show("Error al eliminar el libro: " + ex.Message, "Error", 
+                            MessageBoxButton.OK, 
+                            MessageBoxImage.Error);
                     }
                 }
             }
             else
             {
-                MessageBox.Show("Por favor, seleccione un libro para eliminar.", "Selección requerida", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Por favor, seleccione un libro para eliminar.", "Selección requerida", MessageBoxButton.OK,
+                    MessageBoxImage.Warning);
             }
         }
 
@@ -145,11 +154,8 @@ namespace ProyectoBiblioteca.Pages
                 if (gridResultados.SelectedItem != null)
                 {
                     Libros libroSeleccionado = (Libros)gridResultados.SelectedItem;
-
                     EditarLibroWindow editarLibroWindow = new EditarLibroWindow(libroSeleccionado);
-
                     editarLibroWindow.ShowDialog();
-
                     ActualizarDataGridLibros();
                 }
                 else

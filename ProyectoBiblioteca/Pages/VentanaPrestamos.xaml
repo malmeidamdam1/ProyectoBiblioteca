@@ -1,0 +1,34 @@
+﻿<Page x:Class="ProyectoBiblioteca.Pages.VentanaPrestamos"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ProyectoBiblioteca.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="500" d:DesignWidth="1000"
+      Title="VentanaPrestamos">
+
+    <Grid Background="#4d647a">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="150"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Encabezado -->
+        <Label x:Name="labelPrincipal" Grid.Row="0"  Content="GESTIÓN BIBLIOTECA - PRÉSTAMOS"  Margin="0,10,0,0"  Height="70" Width="490" FontWeight="Bold" FontSize="24" />
+
+        <!-- Botones -->
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,0">
+            <Button Content="Registrar Préstamo" Margin="0,0,10,0" Click="RegistrarPrestamo" Height="50" Width="200"/>
+            <Button Content="Registrar devolución" Margin="10,0,10,0" Click="RegistrarDevolucion"  Height="50" Width="200"/>
+            <Button Content="Registrar Sanción" Margin="10,0,10,0" Click="RegistrarSancion" Height="50" Width="200"/>
+            <Button Content="Préstamos finalizados" Margin="10,0,0,0" Click="VerDevoluciones" Height="50" Width="200"/>
+        </StackPanel>
+
+        <DataGrid x:Name="gridResultados" Grid.Row="2" AutoGenerateColumns="True" CanUserResizeColumns="False" CanUserResizeRows="False" CanUserReorderColumns="False" IsReadOnly="True" 
+                      Margin="80,0,80,10" MaxHeight="300" MaxWidth="800" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto"/>
+
+
+    </Grid>
+</Page>

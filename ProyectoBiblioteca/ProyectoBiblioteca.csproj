@@ -67,6 +67,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Pages\VentanaPrestamos.xaml.cs">
+      <DependentUpon>VentanaPrestamos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\VentanaUsuarios.xaml.cs">
+      <DependentUpon>VentanaUsuarios.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Ventanas\AgregarPeliculaWindow.xaml.cs">
       <DependentUpon>AgregarPeliculaWindow.xaml</DependentUpon>
     </Compile>
@@ -82,6 +88,17 @@
     <Compile Include="Ventanas\EditarPeliculaWindow.xaml.cs">
       <DependentUpon>EditarPeliculaWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Ventanas\EditarUsuarioWindow.xaml.cs">
+      <DependentUpon>EditarUsuarioWindow.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Pages\VentanaPrestamos.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\VentanaUsuarios.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Ventanas\AgregarPeliculaWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -123,6 +140,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Ventanas\EditarPeliculaWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ventanas\EditarUsuarioWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

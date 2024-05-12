@@ -12,7 +12,7 @@
         <Label x:Name="labelPrincipal" Content="GESTIÓN BIBLIOTECA - INVENTARIO" HorizontalAlignment="Center" Margin="180,10,130,0" VerticalAlignment="Top" Height="70" Width="490" FontWeight="Bold" FontSize="24" />
 
         <DataGrid x:Name="gridResultados" AutoGenerateColumns="True" CanUserResizeColumns="False" CanUserResizeRows="False" CanUserReorderColumns="False" IsReadOnly="True" 
-                      Margin="97,216,68,26" MaxHeight="300" MaxWidth="800" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto" />
+                      Margin="97,216,68,26" MaxHeight="300" MaxWidth="800" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto"  />
 
         <Button Content="Agregar libro" HorizontalAlignment="Left" Margin="27,80,0,0" VerticalAlignment="Top" Width="200" Click="AgregarLibro" Height="43" />
         <Button Content="Agregar película" HorizontalAlignment="Left" Margin="27,147,0,0" VerticalAlignment="Top" Width="200" Click="AgregarPelicula" Height="43"/>

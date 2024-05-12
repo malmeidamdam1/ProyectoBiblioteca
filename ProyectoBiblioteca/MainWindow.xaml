@@ -40,8 +40,8 @@
         <ListBox Grid.Column="0" SelectionChanged="Menu_Seleccionado" x:Name="sidebar" Margin="0,85,0,30" BorderThickness="0" Background="#022038" ScrollViewer.VerticalScrollBarVisibility="Disabled">
             <local:NavButton Navlink="/Pages/VentanaCatalogo.xaml"  Margin="3" Padding="6" Icon="/Images/Icons/catalogo.png"/>
             <local:NavButton Navlink="/Pages/VentanaInventario.xaml"  Margin="3" Padding="6" Icon="/Images/Icons/stock.png"/>
-            <local:NavButton  Margin="3" Padding="6" Icon="/Images/Icons/users.png"/>
-            <local:NavButton  Margin="3" Padding="6" Icon="/Images/Icons/prestar.png"/>
+            <local:NavButton Navlink="/Pages/VentanaUsuarios.xaml"  Margin="3" Padding="6" Icon="/Images/Icons/users.png"/>
+            <local:NavButton Navlink="/Pages/VentanaPrestamos.xaml"  Margin="3" Padding="6" Icon="/Images/Icons/prestar.png"/>
             <local:NavButton  Margin="3" Padding="6" Icon="/Images/Icons/informe.png"/>
         </ListBox>
         <!--Menu-->

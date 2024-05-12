@@ -41,6 +41,12 @@ namespace ProyectoBiblioteca.Ventanas
                     return;
                 }
 
+                if (txtISBN.Text.Length != 13)
+                {
+                    MessageBox.Show("El ISBN debe constar de 13 dígitos.", "Error de formato", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
                 //Out para no almacenar la variable transformada, solo queremos la comprobacion T/F
                 if (!int.TryParse(txtAno.Text, out _))
                 {

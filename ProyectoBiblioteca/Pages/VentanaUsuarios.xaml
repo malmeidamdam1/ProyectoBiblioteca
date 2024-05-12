@@ -1,0 +1,26 @@
+﻿<Page x:Class="ProyectoBiblioteca.Pages.VentanaUsuarios"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ProyectoBiblioteca.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="500" d:DesignWidth="1000"
+      Title="VentanaUsuarios">
+
+    <Grid Background="#4d647a">
+
+        <Label x:Name="labelPrincipal" Content="GESTIÓN BIBLIOTECA - USUARIOS" HorizontalAlignment="Center" Margin="180,10,130,0" VerticalAlignment="Top" Height="70" Width="490" FontWeight="Bold" FontSize="24" />
+
+        <DataGrid x:Name="gridResultados" AutoGenerateColumns="True" CanUserResizeColumns="False" CanUserResizeRows="False" CanUserReorderColumns="False" IsReadOnly="True" 
+                      Margin="97,216,68,26" MaxHeight="300" MaxWidth="800" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto" />
+
+        <Button Content="Agregar usuario" HorizontalAlignment="Left" Margin="26,115,0,0" VerticalAlignment="Top" Width="215" Click="AgregarUsuario" Height="50" />
+
+        <Button Content="Ver todos los usuarios" HorizontalAlignment="Left" Margin="262,115,0,0" VerticalAlignment="Top" Width="215" Click="VerUsuarios" Height="50"/>
+
+        <Button Content="Eliminar usuario" HorizontalAlignment="Left" Margin="518,115,0,0" VerticalAlignment="Top" Width="215" Click="EliminarUsuario" Height="50"/>
+
+        <Button Content="Editar usuario" HorizontalAlignment="Left" Margin="760,115,0,0" VerticalAlignment="Top" Width="215" Click="EditarUsuario" Height="50"/>
+    </Grid>
+</Page>

@@ -36,3 +36,9 @@ C:\Users\DAM Almeida\Desktop\ProyectoBiblioteca\ProyectoBiblioteca\obj\Debug\Ven
 C:\Users\DAM Almeida\Desktop\ProyectoBiblioteca\ProyectoBiblioteca\obj\Debug\Ventanas\EditarLibroWindow.g.cs
 C:\Users\DAM Almeida\Desktop\ProyectoBiblioteca\ProyectoBiblioteca\obj\Debug\Ventanas\EditarPeliculaWindow.g.cs
 C:\Users\DAM Almeida\Desktop\ProyectoBiblioteca\ProyectoBiblioteca\obj\Debug\Ventanas\EditarPeliculaWindow.baml
+C:\Users\DAM Almeida\Desktop\ProyectoBiblioteca\ProyectoBiblioteca\obj\Debug\Pages\VentanaUsuarios.g.cs
+C:\Users\DAM Almeida\Desktop\ProyectoBiblioteca\ProyectoBiblioteca\obj\Debug\Pages\VentanaUsuarios.baml
+C:\Users\DAM Almeida\Desktop\ProyectoBiblioteca\ProyectoBiblioteca\obj\Debug\Ventanas\EditarUsuarioWindow.g.cs
+C:\Users\DAM Almeida\Desktop\ProyectoBiblioteca\ProyectoBiblioteca\obj\Debug\Ventanas\EditarUsuarioWindow.baml
+C:\Users\DAM Almeida\Desktop\ProyectoBiblioteca\ProyectoBiblioteca\obj\Debug\Pages\VentanaPrestamos.g.cs
+C:\Users\DAM Almeida\Desktop\ProyectoBiblioteca\ProyectoBiblioteca\obj\Debug\Pages\VentanaPrestamos.baml
