@@ -1,4 +1,5 @@
 ﻿using ProyectoBiblioteca.Model;
+using ProyectoBiblioteca.Ventanas;
 using System;
 using System.Linq;
 using System.Windows;
@@ -19,21 +20,45 @@ namespace ProyectoBiblioteca.Pages
 
         private void RegistrarPrestamo(object sender, RoutedEventArgs e)
         {
-            // Implementar lógica para registrar un nuevo préstamo
+            //AgregarUsuarioVentana agregarUsuario = new AgregarUsuarioVentana();
+
+            //Window mainWindow = Window.GetWindow(this);
+
+            //agregarUsuario.Owner = mainWindow;
+
+            //agregarUsuario.ShowDialog();
+
+            //ActualizarUsuario();
+
+            RegistrarPrestamoWindow registroPrestamo = new RegistrarPrestamoWindow();
+            registroPrestamo.ShowDialog();
+      
+            // NuevoRegistroPrestamoWindow ventana = new NuevoRegistroPrestamoWindow();
+            // ventana.ShowDialog();
+            // ActualizarPrestamos();
         }
 
         private void RegistrarDevolucion(object sender, RoutedEventArgs e)
         {
-            // Implementar lógica para registrar la devolución de un préstamo
+            // Lógica para abrir la ventana de registro de devolución
+            // Por ejemplo:
+            // RegistroDevolucionWindow ventana = new RegistroDevolucionWindow();
+            // ventana.ShowDialog();
+            // ActualizarPrestamos();
         }
 
         private void RegistrarSancion(object sender, RoutedEventArgs e)
         {
-            // Implementar lógica para registrar una sanción
+            // Lógica para abrir la ventana de registro de sanción
+            // Por ejemplo:
+            // RegistroSancionWindow ventana = new RegistroSancionWindow();
+            // ventana.ShowDialog();
+            // ActualizarPrestamos();
         }
 
         private void VerDevoluciones(object sender, RoutedEventArgs e)
         {
+            // Lógica para mostrar las devoluciones
             var devoluciones = from devolucion in bbdd.Devoluciones
                                join prestamo in bbdd.Prestamos on devolucion.ID_Prestamo equals prestamo.ID_Prestamo into gj
                                from subprestamo in gj.DefaultIfEmpty()
@@ -51,12 +76,9 @@ namespace ProyectoBiblioteca.Pages
             gridResultados.ItemsSource = devoluciones.ToList();
         }
 
-
-
         private void ActualizarPrestamos()
         {
             var prestamos = from prestamo in bbdd.Prestamos
-                                //select prestamo;
                             select new
                             {
                                 TituloObra = prestamo.Libros != null ? prestamo.Libros.Titulo : (prestamo.Peliculas != null ? prestamo.Peliculas.Titulo : string.Empty),
@@ -67,6 +89,5 @@ namespace ProyectoBiblioteca.Pages
 
             gridResultados.ItemsSource = prestamos.ToList();
         }
-
     }
 }

@@ -91,6 +91,9 @@
     <Compile Include="Ventanas\EditarUsuarioWindow.xaml.cs">
       <DependentUpon>EditarUsuarioWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Ventanas\RegistrarPrestamoWindow.xaml.cs">
+      <DependentUpon>RegistrarPrestamoWindow.xaml</DependentUpon>
+    </Compile>
     <Page Include="Pages\VentanaPrestamos.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -144,6 +147,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Ventanas\EditarUsuarioWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ventanas\RegistrarPrestamoWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

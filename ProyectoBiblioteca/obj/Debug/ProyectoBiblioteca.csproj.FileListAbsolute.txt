@@ -42,3 +42,5 @@ C:\Users\DAM Almeida\Desktop\ProyectoBiblioteca\ProyectoBiblioteca\obj\Debug\Ven
 C:\Users\DAM Almeida\Desktop\ProyectoBiblioteca\ProyectoBiblioteca\obj\Debug\Ventanas\EditarUsuarioWindow.baml
 C:\Users\DAM Almeida\Desktop\ProyectoBiblioteca\ProyectoBiblioteca\obj\Debug\Pages\VentanaPrestamos.g.cs
 C:\Users\DAM Almeida\Desktop\ProyectoBiblioteca\ProyectoBiblioteca\obj\Debug\Pages\VentanaPrestamos.baml
+C:\Users\DAM Almeida\Desktop\ProyectoBiblioteca\ProyectoBiblioteca\obj\Debug\Ventanas\RegistrarPrestamoWindow.g.cs
+C:\Users\DAM Almeida\Desktop\ProyectoBiblioteca\ProyectoBiblioteca\obj\Debug\Ventanas\RegistrarPrestamoWindow.baml

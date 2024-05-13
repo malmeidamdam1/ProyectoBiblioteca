@@ -3,8 +3,6 @@ using ProyectoBiblioteca.Ventanas;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -18,6 +16,9 @@ namespace ProyectoBiblioteca.Pages
         {
             InitializeComponent();
             bbdd = new BibliotecaModel();
+
+            // Llamar a VerUsuarios al inicializar la ventana para cargar los datos automáticamente
+            VerUsuarios(null, null);
         }
 
         private void AgregarUsuario(object sender, RoutedEventArgs e)
@@ -30,17 +31,9 @@ namespace ProyectoBiblioteca.Pages
 
             agregarUsuario.ShowDialog();
 
+            // Actualizar la lista de usuarios después de agregar uno nuevo
             ActualizarUsuario();
         }
-
-
-        //private void VerUsuarios(object sender, RoutedEventArgs e)
-        //{
-        //    var usuarios = from usuario in bbdd.Usuarios
-        //                   select usuario;
-
-        //    gridResultados.ItemsSource = usuarios.ToList();
-        //}
 
         private void VerUsuarios(object sender, RoutedEventArgs e)
         {
@@ -54,12 +47,11 @@ namespace ProyectoBiblioteca.Pages
                                Apellido = usuario.Apellido,
                                CorreoElectronico = usuario.CorreoElectronico,
                                Telefono = usuario.Telefono,
-                               TieneSancion = subsancion != null
+                               HaTenidoSancion = subsancion != null
                            };
 
             gridResultados.ItemsSource = usuarios.ToList();
         }
-
 
         private void EliminarUsuario(object sender, RoutedEventArgs e)
         {
@@ -77,6 +69,7 @@ namespace ProyectoBiblioteca.Pages
                         bbdd.Usuarios.Remove(usuarioSeleccionado);
                         bbdd.SaveChanges();
 
+                        // Actualizar la lista de usuarios después de eliminar uno
                         ActualizarUsuario();
                     }
                     catch (Exception ex)
@@ -85,7 +78,6 @@ namespace ProyectoBiblioteca.Pages
                     }
                 }
             }
-
             else
             {
                 MessageBox.Show("Por favor, seleccione un usuario para eliminar", "Selección requerida", MessageBoxButton.OK, MessageBoxImage.Warning);
@@ -105,7 +97,7 @@ namespace ProyectoBiblioteca.Pages
                     editarUsuarioWindow.ShowDialog();
 
                     // Actualizar el DataGrid después de la edición
-                    VerUsuarios(this, null);
+                    ActualizarUsuario();
                 }
                 else
                 {
@@ -118,16 +110,9 @@ namespace ProyectoBiblioteca.Pages
             }
         }
 
-
-
-
-
         private void ActualizarUsuario()
         {
-            var usuarios = from usuario in bbdd.Usuarios
-                           select usuario;
-
-            gridResultados.ItemsSource = usuarios.ToList();
+            VerUsuarios(null, null);
         }
     }
 }
