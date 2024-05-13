@@ -15,6 +15,8 @@ namespace ProyectoBiblioteca.Ventanas
         {
             InitializeComponent();
             bbdd = new BibliotecaModel();
+            WindowStartupLocation = WindowStartupLocation.CenterOwner;
+
 
             // Cargar libros en el ListBox de libros
             lstLibros.ItemsSource = bbdd.Libros.ToList();
@@ -44,6 +46,10 @@ namespace ProyectoBiblioteca.Ventanas
                     return;
                 }
 
+                // Obtener el último ID de préstamo y sumar uno para el nuevo préstamo
+                int ultimoIDPrestamo = bbdd.Prestamos.Any() ? bbdd.Prestamos.Max(p => p.ID_Prestamo) : 0;
+                int nuevoIDPrestamo = ultimoIDPrestamo + 1;
+
                 // Obtener el ID del libro o película seleccionado
                 string idLibro = null;
                 int? idPelicula = null;
@@ -52,25 +58,22 @@ namespace ProyectoBiblioteca.Ventanas
                 {
                     Libros libroSeleccionado = (Libros)lstLibros.SelectedItem;
                     idLibro = libroSeleccionado.ISBN;
+
+                    // Restar uno en el campo existencias del libro seleccionado
+                    libroSeleccionado.Existencias--;
                 }
                 else if (lstPeliculas.SelectedItem != null)
                 {
                     Peliculas peliculaSeleccionada = (Peliculas)lstPeliculas.SelectedItem;
                     idPelicula = peliculaSeleccionada.ID_Pelicula;
+
+                    // Restar uno en el campo existencias de la película seleccionada
+                    peliculaSeleccionada.Existencias--;
                 }
 
                 // Verificar existencias
-                int existencias = 0;
-                if (idLibro != null)
-                {
-                    existencias = bbdd.Libros.Where(libro => libro.ISBN == idLibro).Select(libro => libro.Existencias).FirstOrDefault() ?? 0;
-                }
-                else if (idPelicula != null)
-                {
-                    existencias = bbdd.Peliculas.Where(pelicula => pelicula.ID_Pelicula == idPelicula).Select(pelicula => pelicula.Existencias).FirstOrDefault() ?? 0;
-                }
-
-                if (existencias <= 0)
+                if ((idLibro != null && bbdd.Libros.Any(libro => libro.ISBN == idLibro && libro.Existencias <= 0)) ||
+                    (idPelicula != null && bbdd.Peliculas.Any(pelicula => pelicula.ID_Pelicula == idPelicula && pelicula.Existencias <= 0)))
                 {
                     MessageBox.Show("No hay existencias suficientes para realizar el préstamo.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
@@ -79,6 +82,7 @@ namespace ProyectoBiblioteca.Ventanas
                 // Crear un nuevo préstamo
                 Prestamos nuevoPrestamo = new Prestamos
                 {
+                    ID_Prestamo = nuevoIDPrestamo,
                     ID_Libro = idLibro,
                     ID_Pelicula = idPelicula,
                     ID_Usuario = ((Usuarios)lstUsuarios.SelectedItem).ID_Usuario,
@@ -91,7 +95,7 @@ namespace ProyectoBiblioteca.Ventanas
                 bbdd.SaveChanges();
 
                 MessageBox.Show("Préstamo registrado correctamente.", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
-                this.Close(); // Cerrar la ventana después de registrar el préstamo
+                this.Close(); 
             }
             catch (Exception ex)
             {
@@ -99,7 +103,8 @@ namespace ProyectoBiblioteca.Ventanas
             }
         }
 
-        private void ListBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+
+        private void verExistencias(object sender, MouseButtonEventArgs e)
         {
             // Obtener el ListBox
             var listBox = sender as ListBox;
@@ -122,6 +127,30 @@ namespace ProyectoBiblioteca.Ventanas
                 }
 
                 MessageBox.Show($"Existencias: {existencias}", "Existencias", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+        }
+
+        private void verSancion(object sender, MouseButtonEventArgs e)
+        {
+            // Obtener el ListBox
+            var listBox = sender as ListBox;
+
+            // Verificar si se ha seleccionado un elemento
+            if (listBox.SelectedItem != null)
+            {
+                // Obtener el elemento seleccionado
+                var usuarioSeleccionado = listBox.SelectedItem as Usuarios;
+
+                // Cargar las sanciones asociadas al usuario seleccionado
+                var sancionesUsuario = from sancion in bbdd.Sanciones
+                                       where sancion.ID_Usuario == usuarioSeleccionado.ID_Usuario
+                                       select sancion;
+
+                // Verificar si el usuario tiene alguna sanción
+                bool tieneSancion = sancionesUsuario.Any();
+
+                // Mostrar Sí o No dependiendo de si el usuario tiene una sanción
+                MessageBox.Show($"Usuario: {usuarioSeleccionado.Nombre}\n¿Tiene sanción?: {(tieneSancion ? "Sí" : "No")}", "Existencias del Usuario", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
     }

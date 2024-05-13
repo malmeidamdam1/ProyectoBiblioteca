@@ -20,22 +20,11 @@ namespace ProyectoBiblioteca.Pages
 
         private void RegistrarPrestamo(object sender, RoutedEventArgs e)
         {
-            //AgregarUsuarioVentana agregarUsuario = new AgregarUsuarioVentana();
-
-            //Window mainWindow = Window.GetWindow(this);
-
-            //agregarUsuario.Owner = mainWindow;
-
-            //agregarUsuario.ShowDialog();
-
-            //ActualizarUsuario();
-
             RegistrarPrestamoWindow registroPrestamo = new RegistrarPrestamoWindow();
+            Window mainWindow = Window.GetWindow(this);
+            registroPrestamo.Owner = mainWindow;
             registroPrestamo.ShowDialog();
-      
-            // NuevoRegistroPrestamoWindow ventana = new NuevoRegistroPrestamoWindow();
-            // ventana.ShowDialog();
-            // ActualizarPrestamos();
+           // ActualizarPrestamos();
         }
 
         private void RegistrarDevolucion(object sender, RoutedEventArgs e)
