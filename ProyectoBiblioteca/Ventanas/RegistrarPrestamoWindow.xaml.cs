@@ -17,14 +17,10 @@ namespace ProyectoBiblioteca.Ventanas
             bbdd = new BibliotecaModel();
             WindowStartupLocation = WindowStartupLocation.CenterOwner;
 
-
-            // Cargar libros en el ListBox de libros
             lstLibros.ItemsSource = bbdd.Libros.ToList();
 
-            // Cargar películas en el ListBox de películas
             lstPeliculas.ItemsSource = bbdd.Peliculas.ToList();
 
-            // Cargar usuarios en el ListBox de usuarios
             lstUsuarios.ItemsSource = bbdd.Usuarios.ToList();
         }
 

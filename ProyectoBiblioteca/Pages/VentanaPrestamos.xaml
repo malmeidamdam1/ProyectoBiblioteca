@@ -12,22 +12,31 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="70"/>
             <RowDefinition Height="150"/>
+            <RowDefinition Height="30"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <!-- Encabezado -->
         <Label x:Name="labelPrincipal" Grid.Row="0"  Content="GESTIÓN BIBLIOTECA - PRÉSTAMOS"  Margin="0,10,0,0"  Height="70" Width="490" FontWeight="Bold" FontSize="24" />
 
+        <Button Click="Actualizar" Grid.Row="1" Margin="0,0,700,100" Height="50" Width="50" Background="Transparent">
+            <Image Source="/Images/Icons/refresh.png" Height="40" Width="40" Stretch="Uniform"/>
+        </Button>
+
+
         <!-- Botones -->
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,0">
-            <Button Content="Registrar Préstamo" Margin="0,0,10,0" Click="RegistrarPrestamo" Height="50" Width="200"/>
-            <Button Content="Registrar devolución" Margin="10,0,10,0" Click="RegistrarDevolucion"  Height="50" Width="200"/>
-            <Button Content="Registrar Sanción" Margin="10,0,10,0" Click="RegistrarSancion" Height="50" Width="200"/>
-            <Button Content="Préstamos finalizados" Margin="10,0,0,0" Click="VerDevoluciones" Height="50" Width="200"/>
+            <Button Content="Registrar Préstamo" Margin="0,10,10,0" Click="RegistrarPrestamo" Height="50" Width="200"/>
+            <Button Content="Registrar devolución" Margin="0,10,0,0" Click="RegistrarDevolucion"  Height="50" Width="200"/>
+            <Button Content="Registrar Sanción" Margin="10,10,10,0" Click="RegistrarSancion" Height="50" Width="200"/>
+            <Button Content="Ver préstamos finalizados" Margin="10,10,0,0" Click="VerDevoluciones" Height="50" Width="250"/>
         </StackPanel>
 
-        <DataGrid x:Name="gridResultados" Grid.Row="2" AutoGenerateColumns="True" CanUserResizeColumns="False" CanUserResizeRows="False" CanUserReorderColumns="False" IsReadOnly="True" 
-                      Margin="80,0,80,10" MaxHeight="300" MaxWidth="800" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto"/>
+
+
+        <Label x:Name="labelDataGrid" Content="Préstamos activos actualmente" Grid.Row="2" Width="330" Height="40" FontSize="20" Margin="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="SemiBold"/>
+        <DataGrid x:Name="gridResultados" Grid.Row="3" AutoGenerateColumns="True" CanUserResizeColumns="False" CanUserResizeRows="False" CanUserReorderColumns="False" IsReadOnly="True" 
+                      Margin="80,20,80,20" MaxHeight="300" MaxWidth="800" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto"/>
 
 
     </Grid>

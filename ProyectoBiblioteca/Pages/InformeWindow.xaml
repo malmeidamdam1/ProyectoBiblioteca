@@ -1,0 +1,30 @@
+﻿<Page x:Class="ProyectoBiblioteca.Ventanas.InformeWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Generar Informes" Height="450" Width="600" >
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!-- Título -->
+        <TextBlock Text="Generar Informes" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Margin="0,20" />
+        
+        
+
+        <!-- Selección de informe -->
+        <ComboBox x:Name="cmbTipoInforme" Grid.Row="1" Margin="50" HorizontalAlignment="Center" VerticalAlignment="Center" Width="300">
+            <ComboBoxItem Content="Préstamos" />
+            <ComboBoxItem Content="Devoluciones" />
+            <ComboBoxItem Content="Multas" />
+            <ComboBoxItem Content="Uso de la Biblioteca" />
+            <ComboBoxItem Content="Estadísticas" />
+        </ComboBox>
+
+        <!-- Botón para generar informe -->
+        <Button x:Name="btnGenerarInforme" Grid.Row="2" Margin="50" Content="Generar Informe" HorizontalAlignment="Center" VerticalAlignment="Center" Width="150" Click="GenerarInforme_Click" />
+        <TextBox x:Name="txtIDObra" HorizontalAlignment="Left" Height="23" Margin="195,38,0,0" Grid.Row="1" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+    </Grid>
+</Page>

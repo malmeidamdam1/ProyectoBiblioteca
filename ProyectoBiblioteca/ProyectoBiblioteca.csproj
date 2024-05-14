@@ -67,8 +67,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Pages\InformeWindow.xaml.cs">
+      <DependentUpon>InformeWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\VentanaPrestamos.xaml.cs">
       <DependentUpon>VentanaPrestamos.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\VentanaSanciones.xaml.cs">
+      <DependentUpon>VentanaSanciones.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\VentanaUsuarios.xaml.cs">
       <DependentUpon>VentanaUsuarios.xaml</DependentUpon>
@@ -94,7 +100,15 @@
     <Compile Include="Ventanas\RegistrarPrestamoWindow.xaml.cs">
       <DependentUpon>RegistrarPrestamoWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="Pages\InformeWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\VentanaPrestamos.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\VentanaSanciones.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -242,6 +256,8 @@
     <Resource Include="Images\Icons\catalogo.png" />
     <Resource Include="Images\Icons\stock.png" />
     <Resource Include="Images\Icons\informe.png" />
+    <Resource Include="Images\Icons\sancion.png" />
+    <Resource Include="Images\Icons\refresh.png" />
     <Content Include="Model\BibliotecaModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>BibliotecaModel.edmx</DependentUpon>

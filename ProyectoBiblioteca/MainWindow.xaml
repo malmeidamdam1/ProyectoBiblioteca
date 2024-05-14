@@ -12,7 +12,7 @@
 
 
         <!--LOGO IMAGEN-->
-        <Image x:Name="logoImage" Source="/Images/logoBiblioteca.jpg" Stretch="Uniform" Margin="0,10,0,0" VerticalAlignment="Top" Height="70" Width="120" MouseLeftButtonDown="logoImage_MouseLeftButtonDown">
+        <Image x:Name="logoImage" Source="/Images/logoBiblioteca.jpg" Stretch="Uniform" Margin="0,10,0,0" VerticalAlignment="Top" Height="65" Width="120" MouseLeftButtonDown="logoImage_MouseLeftButtonDown">
             <Image.Effect>
                 <DropShadowEffect ShadowDepth="0" BlurRadius="10" Color="#DEA01E" Opacity="0"/>
             </Image.Effect>
@@ -38,11 +38,12 @@
 
         <!--Menu-->
         <ListBox Grid.Column="0" SelectionChanged="Menu_Seleccionado" x:Name="sidebar" Margin="0,85,0,30" BorderThickness="0" Background="#022038" ScrollViewer.VerticalScrollBarVisibility="Disabled">
-            <local:NavButton Navlink="/Pages/VentanaCatalogo.xaml"  Margin="3" Padding="6" Icon="/Images/Icons/catalogo.png"/>
-            <local:NavButton Navlink="/Pages/VentanaInventario.xaml"  Margin="3" Padding="6" Icon="/Images/Icons/stock.png"/>
-            <local:NavButton Navlink="/Pages/VentanaUsuarios.xaml"  Margin="3" Padding="6" Icon="/Images/Icons/users.png"/>
-            <local:NavButton Navlink="/Pages/VentanaPrestamos.xaml"  Margin="3" Padding="6" Icon="/Images/Icons/prestar.png"/>
-            <local:NavButton  Margin="3" Padding="6" Icon="/Images/Icons/informe.png"/>
+            <local:NavButton Navlink="/Pages/VentanaCatalogo.xaml"  Margin="2" Padding="6" Icon="/Images/Icons/catalogo.png"/>
+            <local:NavButton Navlink="/Pages/VentanaInventario.xaml"  Margin="2" Padding="6" Icon="/Images/Icons/stock.png"/>
+            <local:NavButton Navlink="/Pages/VentanaUsuarios.xaml"  Margin="2" Padding="6" Icon="/Images/Icons/users.png"/>
+            <local:NavButton Navlink="/Pages/VentanaPrestamos.xaml"  Margin="2" Padding="6" Icon="/Images/Icons/prestar.png"/>
+            <local:NavButton Navlink="/Pages/VentanaSanciones.xaml"  Margin="2" Padding="6" Icon="/Images/Icons/sancion.png"/>
+            <local:NavButton Navlink="/Pages/InformeWindow.xaml"  Margin="2" Padding="6" Icon="/Images/Icons/informe.png"/>
         </ListBox>
         <!--Menu-->
 

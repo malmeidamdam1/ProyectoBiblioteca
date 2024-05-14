@@ -91,6 +91,7 @@ namespace ProyectoBiblioteca.Pages
             MessageBox.Show("El parámetro admite:\n\nLibros: Título, ISBN, Autor\nPelículas: Título, Director", "Ayuda", MessageBoxButton.OK, MessageBoxImage.Question);
         }
 
+      
 
         private void MostrarDetallesObra(object sender, MouseButtonEventArgs e)
         {

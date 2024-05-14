@@ -53,6 +53,36 @@ namespace ProyectoBiblioteca.Pages
             gridResultados.ItemsSource = usuarios.ToList();
         }
 
+        private void probar(object sender, RoutedEventArgs e)
+        {
+            if (gridResultados.SelectedItem != null)
+            {
+                dynamic usuarioSeleccionado = gridResultados.SelectedItem;
+                int idUsuario = usuarioSeleccionado.ID_Usuario;
+
+                // usuarioSeleccionado = bbdd.Usuarios.FirstOrDefault(u => u.ID_Usuario == idUsuario);
+
+                //    EditarUsuarioWindow editarUsuarioWindow = new EditarUsuarioWindow(idUsuario);
+
+
+                     MessageBox.Show(idUsuario.ToString());
+
+                    VentanaPrestamos ventanaPrestamos = new VentanaPrestamos(idUsuario);
+
+                    NavigationService.Navigate(ventanaPrestamos);
+
+                
+                // Crear una instancia del Page VentanaPrestamos pasando el usuario seleccionado como parámetro
+
+                // Navegar a la página VentanaPrestamos
+            }
+            else
+            {
+                MessageBox.Show("Por favor, seleccione un usuario en el DataGrid.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+
         private void EliminarUsuario(object sender, RoutedEventArgs e)
         {
             if (gridResultados.SelectedItem != null)
