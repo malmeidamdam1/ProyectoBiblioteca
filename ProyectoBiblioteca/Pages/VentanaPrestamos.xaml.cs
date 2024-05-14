@@ -17,7 +17,7 @@ namespace ProyectoBiblioteca.Pages
         {
             InitializeComponent();
             bbdd = new BibliotecaModel();
-            ActualizarPrestamos();
+            MostrarPrestamosActivos();
         }
 
         public VentanaPrestamos(int idUsuario)
@@ -26,7 +26,7 @@ namespace ProyectoBiblioteca.Pages
             this.idUsuario = idUsuario;
             bbdd = new BibliotecaModel();
             Usuarios usuarioSeleccionado = bbdd.Usuarios.FirstOrDefault(u => u.ID_Usuario == idUsuario);
-            ActualizarPrestamos();
+            MostrarPrestamosActivos();
             MessageBox.Show($"Usuario seleccionado: {usuarioSeleccionado.Nombre}", "Información", MessageBoxButton.OK, MessageBoxImage.Information);
 
         }
@@ -37,7 +37,7 @@ namespace ProyectoBiblioteca.Pages
             Window mainWindow = Window.GetWindow(this);
             registroPrestamo.Owner = mainWindow;
             registroPrestamo.ShowDialog();
-            ActualizarPrestamos();
+            MostrarPrestamosActivos();
         }
 
         private void RegistrarDevolucion(object sender, RoutedEventArgs e)
@@ -73,7 +73,7 @@ namespace ProyectoBiblioteca.Pages
                         bbdd.SaveChanges();
 
                         MessageBox.Show("Devolución registrada correctamente.", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
-                        ActualizarPrestamos(); // Actualizar la lista de préstamos después de registrar la devolución
+                        MostrarPrestamosActivos(); // Actualizar la lista de préstamos después de registrar la devolución
                     }
                 }
                 else
@@ -103,7 +103,7 @@ namespace ProyectoBiblioteca.Pages
                     NavigationService.Navigate(ventanaSanciones);
 
                     // Actualizar la lista de préstamos después de registrar la sanción
-                    ActualizarPrestamos();
+                    MostrarPrestamosActivos();
                 }
                 else
                 {
@@ -140,7 +140,7 @@ namespace ProyectoBiblioteca.Pages
         }
 
 
-        private void ActualizarPrestamos()
+        private void MostrarPrestamosActivos()
         {
             var prestamosActivos = from prestamo in bbdd.Prestamos
                                    where !bbdd.Devoluciones.Any(devolucion => devolucion.ID_Prestamo == prestamo.ID_Prestamo)
@@ -153,13 +153,12 @@ namespace ProyectoBiblioteca.Pages
                                        FechaPrestamo = prestamo.FechaPrestamo,
                                        FechaDevolucionPrevista = prestamo.FechaDevolucion
                                    };
-
             gridResultados.ItemsSource = prestamosActivos.ToList();
         }
 
         private void Actualizar(object sender, RoutedEventArgs e)
         {
-            ActualizarPrestamos();
+            MostrarPrestamosActivos();
         }
 
 

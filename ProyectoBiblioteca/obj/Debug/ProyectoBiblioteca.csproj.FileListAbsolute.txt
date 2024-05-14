@@ -47,3 +47,4 @@ C:\Users\DAM Almeida\Desktop\ProyectoBiblioteca\ProyectoBiblioteca\obj\Debug\Pag
 C:\Users\DAM Almeida\Desktop\ProyectoBiblioteca\ProyectoBiblioteca\obj\Debug\Pages\InformeWindow.g.cs
 C:\Users\DAM Almeida\Desktop\ProyectoBiblioteca\ProyectoBiblioteca\obj\Debug\Pages\VentanaSanciones.baml
 C:\Users\DAM Almeida\Desktop\ProyectoBiblioteca\ProyectoBiblioteca\obj\Debug\Pages\VentanaSanciones.g.cs
+C:\Users\DAM Almeida\Desktop\ProyectoBiblioteca\ProyectoBiblioteca\obj\Debug\ProyectoBiblioteca.csproj.AssemblyReference.cache

@@ -15,7 +15,8 @@
 
         <!-- ListBox y label para seleccionar un libro -->
         <Label Content="Libro a prestar:" Grid.Row="0" Grid.Column="0" Height="30" Margin="50,0,50,80" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-        <ListBox MouseDoubleClick="verExistencias" x:Name="lstLibros" Grid.Row="0" Grid.Column="0" MaxHeight="90" Margin="50,45,50,0" DisplayMemberPath="Titulo"  VerticalAlignment="Center"/>
+        <ListBox MouseDoubleClick="verExistencias" x:Name="lstLibros" Grid.Row="0" Grid.Column="0" MaxHeight="90" Margin="50,45,50,0" 
+                 DisplayMemberPath="Titulo"  VerticalAlignment="Center"/>
 
         <!-- ListBox y label para seleccionar una película -->
         <Label Content="Película a prestar:" Grid.Row="0" Grid.Column="1" Height="30" Margin="50,0,50,80" VerticalAlignment="Center" HorizontalAlignment="Center"/>
