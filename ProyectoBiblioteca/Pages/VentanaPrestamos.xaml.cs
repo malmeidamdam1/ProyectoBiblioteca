@@ -142,6 +142,8 @@ namespace ProyectoBiblioteca.Pages
 
         private void MostrarPrestamosActivos()
         {
+            labelDataGrid.Content = "Préstamos activos";
+
             var prestamosActivos = from prestamo in bbdd.Prestamos
                                    where !bbdd.Devoluciones.Any(devolucion => devolucion.ID_Prestamo == prestamo.ID_Prestamo)
                                    select new

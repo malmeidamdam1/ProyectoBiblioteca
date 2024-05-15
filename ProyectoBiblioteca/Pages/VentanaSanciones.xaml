@@ -5,13 +5,60 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       mc:Ignorable="d"
       d:DesignHeight="500" d:DesignWidth="1000"
-       Title="VentanaSanciones" >
-    
+      Title="VentanaSanciones">
+
     <Grid Background="#4d647a">
-        <Label Content="Motivo de la sanción:" HorizontalAlignment="Left" Margin="20,20,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtMotivo" HorizontalAlignment="Left" Margin="20,40,0,0" VerticalAlignment="Top" Width="200"/>
-        <Label Content="Fecha de fin de la sanción:" HorizontalAlignment="Left" Margin="20,80,0,0" VerticalAlignment="Top"/>
-        <DatePicker x:Name="dpFechaFinSancion" HorizontalAlignment="Left" Margin="20,100,0,0" VerticalAlignment="Top" Width="200"/>
-        <Button Content="Registrar Sanción" HorizontalAlignment="Left" Margin="20,150,0,0" VerticalAlignment="Top" Width="150" Click="RegistrarSancion_Click"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/> 
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/> <!--DataGrid-->
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="500"/>
+            <ColumnDefinition Width="500"/>
+        </Grid.ColumnDefinitions>
+
+        <!--Titulo-->
+        <Label x:Name="labelPrincipal" Grid.Row="0" Grid.ColumnSpan="2" Grid.Column="0" Content="GESTIÓN BIBLIOTECA - SANCIONES"  Margin="0,10,0,0"  Height="70" Width="490" FontWeight="Bold" FontSize="24" />
+
+        <!-- Datos usuario seleccionado -->
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="20,5" Grid.Column="0">
+            <Label Content="Nombre del Usuario: " VerticalAlignment="Center"/>
+            <Label x:Name="lblNombreUsuario" VerticalAlignment="Center" FontWeight="Bold"/>
+            <Label Content="ID del Usuario: " VerticalAlignment="Center" Margin="20,0,0,0"/>
+            <Label x:Name="lblIDUsuario" VerticalAlignment="Center" FontWeight="Bold"/>
+        </StackPanel>
+
+        <!-- Combobox de usuarios -->
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="20,5" Grid.Column="1">
+            <Label Content="Usuario a sancionar: " VerticalAlignment="Center"/>
+            <ComboBox x:Name="cmbUsuarios" Margin="10,0" SelectionChanged="CambioUsuario" />
+        </StackPanel>
+
+        <!-- Motivo de la sanción -->
+        <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="20,5" Grid.Column="0">
+            <Label Content="Motivo de la sanción: " VerticalAlignment="Center"/>
+            <TextBox x:Name="txtMotivo" Margin="10,0" Width="200"/>
+        </StackPanel>
+
+        <!-- Duración de la sanción -->
+        <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="20,5" Grid.Column="1">
+            <Label Content="Duración de la sanción (en días): " VerticalAlignment="Center"/>
+            <TextBox x:Name="txtDuracion" Margin="10,0" Width="200"/>
+        </StackPanel>
+
+        <Label Content="Sanciones Activas" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Width="200" Height="30" VerticalAlignment="Top" FontSize="20" FontWeight="SemiBold" Margin="0,20,0,20"/>
+        <DataGrid x:Name="gridSanciones" Grid.Row="3" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2" AutoGenerateColumns="True" CanUserResizeColumns="False" CanUserResizeRows="False" CanUserReorderColumns="False" IsReadOnly="True" 
+                      Margin="0,50,10,20" MaxHeight="150" MaxWidth="600" ScrollViewer.VerticalScrollBarVisibility="Auto" 
+                  ScrollViewer.HorizontalScrollBarVisibility="Auto"/>
+        
+        <!-- Botones -->
+        <StackPanel Grid.Row="6" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,10,10,0">
+            <Button Content="Registrar Sanción" Margin="10,10,20,10" Click="RegistrarSancion" Height="50" Width="250"/>
+            <Button Content="Eliminar Sanción" Margin="20,10,10,10" Click="EliminarSancion" Height="50" Width="250"/>
+        </StackPanel>
     </Grid>
 </Page>

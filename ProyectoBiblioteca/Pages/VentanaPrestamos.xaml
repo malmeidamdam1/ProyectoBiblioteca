@@ -33,7 +33,7 @@
         </StackPanel>
 
         <!--DataGrid ver préstamos-->
-        <Label x:Name="labelDataGrid" Content="Préstamos activos actualmente" Grid.Row="2" Width="330" Height="40" FontSize="20" Margin="0" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="SemiBold"/>
+        <Label x:Name="labelDataGrid" Content="Préstamos activos" Grid.Row="2" Width="280" Height="40" FontSize="24" Margin="20,0,20,0" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="SemiBold"/>
         <DataGrid x:Name="gridResultados" Grid.Row="3" AutoGenerateColumns="True" CanUserResizeColumns="False" CanUserResizeRows="False" CanUserReorderColumns="False" IsReadOnly="True" 
                       Margin="80,20,80,20" MaxHeight="300" MaxWidth="800" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto"/>
     </Grid>
