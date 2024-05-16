@@ -63,12 +63,10 @@ namespace ProyectoBiblioteca.Pages
                         // Crear una nueva instancia de Devoluciones
                         Devoluciones nuevaDevolucion = new Devoluciones
                         {
-                            ID_Devolucion = nuevoIdDevolucion, // Obtener el nuevo ID de devolución
+                            ID_Devolucion = nuevoIdDevolucion,
                             ID_Prestamo = idPrestamo,
                             FechaDevolucion = DateTime.Now // Fecha actual
                         };
-
-                        // Agregar la nueva devolución a la base de datos
                         bbdd.Devoluciones.Add(nuevaDevolucion);
                         bbdd.SaveChanges();
 
@@ -94,7 +92,6 @@ namespace ProyectoBiblioteca.Pages
             {
                 if (gridResultados.SelectedItem != null)
                 {
-                    // Obtener el préstamo seleccionado en el DataGrid
                     dynamic prestamoSeleccionado = gridResultados.SelectedItem;
                     int idUsuario = prestamoSeleccionado.ID_Usuario;
 
@@ -102,7 +99,6 @@ namespace ProyectoBiblioteca.Pages
                     VentanaSanciones ventanaSanciones = new VentanaSanciones(idUsuario);
                     NavigationService.Navigate(ventanaSanciones);
 
-                    // Actualizar la lista de préstamos después de registrar la sanción
                     MostrarPrestamosActivos();
                 }
                 else
@@ -121,10 +117,12 @@ namespace ProyectoBiblioteca.Pages
             labelDataGrid.Content = "Préstamos finalizados";
 
             var devoluciones = from devolucion in bbdd.Devoluciones
-                               join prestamo in bbdd.Prestamos on devolucion.ID_Prestamo equals prestamo.ID_Prestamo into gj
-                               from subprestamo in gj.DefaultIfEmpty()
-                               join sancion in bbdd.Sanciones on subprestamo.ID_Usuario equals sancion.ID_Usuario into sj
-                               from subsancion in sj.DefaultIfEmpty()
+                               join prestamo in bbdd.Prestamos on devolucion.ID_Prestamo equals prestamo.ID_Prestamo into pd 
+                               //pd tiene campos coincidentes de Préstamos y Devoluciones
+                               from subprestamo in pd.DefaultIfEmpty() 
+                               //Si no hay coincidntes hace uno que es null
+                               join sancion in bbdd.Sanciones on subprestamo.ID_Usuario equals sancion.ID_Usuario into ps 
+                               from subsancion in ps.DefaultIfEmpty()
                                select new
                                {
                                    ID_Prestamo = subprestamo.ID_Prestamo,
@@ -133,7 +131,7 @@ namespace ProyectoBiblioteca.Pages
                                    FechaPrestamo = subprestamo != null ? subprestamo.FechaPrestamo : (DateTime?)null,
                                    FechaDevolucionPrevista = subprestamo.FechaPrestamo,
                                    FechaDevuelta = devolucion.FechaDevolucion,
-                                   Sancion = subsancion != null ? subsancion.Motivo : string.Empty
+                                   Sanción = subsancion != null ? subsancion.Motivo : string.Empty
                                };
 
             gridResultados.ItemsSource = devoluciones.ToList();

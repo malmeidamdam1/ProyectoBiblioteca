@@ -43,7 +43,7 @@
             <local:NavButton Navlink="/Pages/VentanaUsuarios.xaml"  Margin="2" Padding="6" Icon="/Images/Icons/users.png"/>
             <local:NavButton Navlink="/Pages/VentanaPrestamos.xaml"  Margin="2" Padding="6" Icon="/Images/Icons/prestar.png"/>
             <local:NavButton Navlink="/Pages/VentanaSanciones.xaml"  Margin="2" Padding="6" Icon="/Images/Icons/sancion.png"/>
-            <local:NavButton Navlink="/Pages/InformeWindow.xaml"  Margin="2" Padding="6" Icon="/Images/Icons/informe.png"/>
+            <local:NavButton Navlink="/Pages/VentanaInforme.xaml"  Margin="2" Padding="6" Icon="/Images/Icons/informe.png"/>
         </ListBox>
         <!--Menu-->
 

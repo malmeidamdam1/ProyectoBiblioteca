@@ -67,8 +67,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Pages\InformeWindow.xaml.cs">
-      <DependentUpon>InformeWindow.xaml</DependentUpon>
+    <Compile Include="Pages\VentanaInforme.xaml.cs">
+      <DependentUpon>VentanaInforme.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\VentanaPrestamos.xaml.cs">
       <DependentUpon>VentanaPrestamos.xaml</DependentUpon>
@@ -100,7 +100,7 @@
     <Compile Include="Ventanas\RegistrarPrestamoWindow.xaml.cs">
       <DependentUpon>RegistrarPrestamoWindow.xaml</DependentUpon>
     </Compile>
-    <Page Include="Pages\InformeWindow.xaml">
+    <Page Include="Pages\VentanaInforme.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

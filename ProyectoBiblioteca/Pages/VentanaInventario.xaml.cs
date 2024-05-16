@@ -50,7 +50,7 @@ namespace ProyectoBiblioteca.Pages
 
             agregarPeliWindow.ShowDialog();
 
-            ActualizarDataGridLibros();
+            ActualizarDataGridPeliculas();
         }
 
         private void VerLibros(object sender, RoutedEventArgs e)
@@ -100,6 +100,7 @@ namespace ProyectoBiblioteca.Pages
                 MessageBox.Show("Por favor, seleccione un libro para eliminar.", "Selección requerida", MessageBoxButton.OK,
                     MessageBoxImage.Warning);
             }
+            ActualizarDataGridLibros();
         }
 
         private void ActualizarDataGridLibros()
@@ -137,6 +138,7 @@ namespace ProyectoBiblioteca.Pages
             {
                 MessageBox.Show("Por favor, seleccione una película para eliminar.", "Selección requerida", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
+            ActualizarDataGridPeliculas();
         }
 
         private void ActualizarDataGridPeliculas()
@@ -167,6 +169,7 @@ namespace ProyectoBiblioteca.Pages
             {
                 MessageBox.Show("Error al abrir la ventana de edición de libro. " + "Por favor asegúrese de que ha seleccionado el tipo de obra adecuado", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+            ActualizarDataGridLibros();
         }
 
         private void EditarPelicula(object sender, RoutedEventArgs e)
@@ -192,6 +195,7 @@ namespace ProyectoBiblioteca.Pages
             {
                 MessageBox.Show("Error al abrir la ventana de edición de película. " + "Por favor asegúrese de que ha seleccionado el tipo de obra adecuado", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+            ActualizarDataGridPeliculas();
         }
 
     }

@@ -1,0 +1,57 @@
+﻿<Page x:Class="ProyectoBiblioteca.Pages.VentanaInforme"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ProyectoBiblioteca.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="500" d:DesignWidth="1000"
+      Title="VentanaInforme">
+
+    <Grid Background="#4d647a">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Título -->
+        <Label x:Name="labelPrincipal" Grid.Row="0"  Content="GESTIÓN BIBLIOTECA - INFORMES"  Margin="0,10,0,0"  Height="70" Width="490" FontWeight="Bold" FontSize="24" />
+
+        <!-- Selección de película -->
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="20">
+            <Label Content="Películas:" VerticalAlignment="Center" Margin="0,0,10,0" Width="100"/>
+            <ComboBox x:Name="cmbPeliculas" Width="300" SelectionChanged="cmbPeliculas_SelectionChanged"/>
+        </StackPanel>
+
+        <!-- Selección de libro -->
+        <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="20">
+            <Label Content="Libros:" VerticalAlignment="Center" Margin="0,0,10,0" Width="100"/>
+            <ComboBox x:Name="cmbLibros" Width="300" SelectionChanged="cmbLibros_SelectionChanged"/>
+        </StackPanel>
+
+        <!-- Selección de usuario -->
+        <StackPanel Grid.Row="3" Orientation="Horizontal" Margin="20">
+            <Label Content="Usuario:" VerticalAlignment="Center" Margin="0,0,10,0" Width="100"/>
+            <ComboBox x:Name="cmbUsuarios" Width="300" SelectionChanged="cmbUsuarios_SelectionChanged"/>
+        </StackPanel>
+
+        <!-- Selección del tipo de informe -->
+        <StackPanel Grid.Row="4" Orientation="Horizontal" Margin="20">
+            <Label Content="Tipo de Informe:" VerticalAlignment="Center" Margin="0,0,10,0" Width="120"/>
+            <ComboBox x:Name="cmbTipoInforme" Width="300">
+                <ComboBoxItem Content="Porcentaje de préstamos [obra]" IsEnabled="False"/>
+                <ComboBoxItem Content="Género más popular [obra]" IsEnabled="False"/>
+                <ComboBoxItem Content="Obra más solicitada [obra]" IsEnabled="False" />
+                <ComboBoxItem Content="Porcentaje de sanciones [usuario]" IsEnabled="False" />
+                <ComboBoxItem Content="Veces se ha prestado [usuario]" IsEnabled="False" />
+            </ComboBox>
+        </StackPanel>
+
+        <!-- Botón para generar informe -->
+        <Button x:Name="btnGenerarInforme" Grid.Row="5" Margin="50" Content="Generar Informe" HorizontalAlignment="Center" VerticalAlignment="Center" Height="75" Width="200" Click="GenerarInforme_Click" />
+    </Grid>
+</Page>

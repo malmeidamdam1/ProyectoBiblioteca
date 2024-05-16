@@ -16,7 +16,6 @@ namespace ProyectoBiblioteca.Pages
             InitializeComponent();
             this.idUsuario = idUsuario;
             bbdd = new BibliotecaModel();
-
             // Mostrar el nombre e ID del usuario pasado como parámetro
             Usuarios usuario = bbdd.Usuarios.FirstOrDefault(u => u.ID_Usuario == idUsuario);
             if (usuario != null)
@@ -24,15 +23,12 @@ namespace ProyectoBiblioteca.Pages
                 lblNombreUsuario.Content = usuario.Nombre;
                 lblIDUsuario.Content = usuario.ID_Usuario;
             }
-
             // Mostrar solo el usuario pasado como parámetro en el ComboBox
             cmbUsuarios.ItemsSource = new[] { usuario };
             cmbUsuarios.DisplayMemberPath = "Nombre";
             cmbUsuarios.SelectedValuePath = "ID_Usuario";
             cmbUsuarios.SelectedIndex = 0;
-
             CargarSanciones();
-
         }
 
         public VentanaSanciones()
@@ -67,13 +63,9 @@ namespace ProyectoBiblioteca.Pages
 
         private void CargarSanciones()
         {
-            //var sanciones = bbdd.Sanciones.Where(s => s.ID_Usuario == idUsuario).ToList();
-            //var sanciones = bbdd.Sanciones.ToList();
-            //gridSanciones.ItemsSource = sanciones;
-
             try
             {
-                // Seleccionar las columnas deseadas y cargar las sanciones en el DataGrid
+                // Cargamos las columnas y no el objeto entero para evitar la columna de Usuarios
                 var sanciones = bbdd.Sanciones.Select(s => new { ID_Sancion = s.ID_Sancion, Motivo = s.Motivo, FechaSancion = s.FechaSancion, FechaFinSancion = s.FechaFinSancion }).ToList();
                 gridSanciones.ItemsSource = sanciones;
             }
@@ -97,7 +89,6 @@ namespace ProyectoBiblioteca.Pages
                 int ultimoIdSancion = bbdd.Sanciones.Any() ? bbdd.Sanciones.Max(s => s.ID_Sancion) : 0;
                 int nuevoIdSancion = ultimoIdSancion + 1;
 
-                // Crear una nueva instancia de Sanciones
                 Sanciones nuevaSancion = new Sanciones
                 {
                     ID_Sancion = nuevoIdSancion,
@@ -106,8 +97,6 @@ namespace ProyectoBiblioteca.Pages
                     FechaSancion = DateTime.Now,
                     FechaFinSancion = fechaFinSancion
                 };
-
-                // Agregar la nueva sanción a la base de datos
                 bbdd.Sanciones.Add(nuevaSancion);
                 bbdd.SaveChanges();
 
@@ -127,18 +116,13 @@ namespace ProyectoBiblioteca.Pages
         {
             try
             {
-                // Verificar si hay una sanción seleccionada en el DataGrid
                 if (gridSanciones.SelectedItem != null)
                 {
-                    // Mostrar mensaje de confirmación
                     MessageBoxResult result = MessageBox.Show("¿Está seguro de que desea eliminar la sanción seleccionada?", "Confirmar eliminación", MessageBoxButton.YesNo, MessageBoxImage.Question);
-
                     if (result == MessageBoxResult.Yes)
                     {
-                        // Obtener la sanción seleccionada
                         dynamic sancionSeleccionada = gridSanciones.SelectedItem;
 
-                        // Obtener el ID de la sanción
                         int idSancion = sancionSeleccionada.ID_Sancion;
 
                         // Buscar la sanción en la base de datos y eliminarla
@@ -147,10 +131,7 @@ namespace ProyectoBiblioteca.Pages
                         {
                             bbdd.Sanciones.Remove(sancion);
                             bbdd.SaveChanges();
-
-                            // Actualizar el DataGrid después de eliminar la sanción
                             CargarSanciones();
-
                             MessageBox.Show("Sanción eliminada correctamente.", "Éxito", MessageBoxButton.OK, MessageBoxImage.Information);
                         }
                         else
