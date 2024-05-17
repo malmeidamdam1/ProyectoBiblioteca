@@ -30,6 +30,14 @@ namespace ProyectoBiblioteca.Ventanas
         {
             try
             {
+                if (string.IsNullOrWhiteSpace(txtTitulo.Text) || string.IsNullOrWhiteSpace(txtDirector.Text) || string.IsNullOrWhiteSpace(txtGenero.Text) 
+                    ||string.IsNullOrWhiteSpace(txtAno.Text) || string.IsNullOrWhiteSpace(txtDuracion.Text) || string.IsNullOrWhiteSpace(txtExistencias.Text))
+
+                {
+                    MessageBox.Show("Por favor, complete todos los campos.", "Campos incompletos", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
                 // Validar que el año sea un número entero
                 if (!int.TryParse(txtAno.Text, out _))
                 {
@@ -37,25 +45,31 @@ namespace ProyectoBiblioteca.Ventanas
                     return;
                 }
 
+                // Validar que las existencias sean un número entero positivo
+                if (!int.TryParse(txtExistencias.Text, out int existencias) || existencias < 0)
+                {
+                    MessageBox.Show("Por favor, ingrese un número válido de existencias.", "Error de formato", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
+                if (!int.TryParse(txtDuracion.Text, out _))
+                {
+                    MessageBox.Show("Por favor, ingrese un número válido de minutos", "Error de formato", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
                 int ultimoID = bbdd.Peliculas.Max(p => p.ID_Pelicula);
 
                 int nuevoID = ultimoID + 1;
 
-                string titulo = txtTitulo.Text;
-                string director = txtDirector.Text;
-                string genero = txtGenero.Text;
-                int ano = int.Parse(txtAno.Text);
-                int duracion = int.Parse(txtDuracion.Text);
-                int existencias = int.Parse(txtExistencias.Text);
-
                 Peliculas nuevaPelicula = new Peliculas
                 {
                     ID_Pelicula = nuevoID,
-                    Titulo = titulo,
-                    Director = director,
-                    Genero = genero,
-                    Anio = ano,
-                    Duracion = duracion,
+                    Titulo = txtTitulo.Text,
+                    Director = txtDirector.Text,
+                    Genero = txtGenero.Text,
+                    Anio = int.Parse(txtAno.Text),
+                    Duracion = int.Parse(txtDuracion.Text),
                     Existencias = existencias
                 };
                 bbdd.Peliculas.Add(nuevaPelicula);

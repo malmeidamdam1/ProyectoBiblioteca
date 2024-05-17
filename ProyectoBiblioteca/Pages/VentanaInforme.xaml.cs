@@ -51,7 +51,7 @@ namespace ProyectoBiblioteca.Pages
                 case "Porcentaje de préstamos [obra]":
                     GenerarInformePorcentajePrestamos();
                     break;
-                case "Género más popular [obra]":
+                case "Género más predominante [obra]":
                     GenerarInformeGeneroPopular();
                     break;
                 case "Obra más solicitada":
