@@ -12,6 +12,8 @@
             <Setter Property="Foreground" Value="#DBDBDB"/>
         </Style>
 
+       
+        
         <Style TargetType="Button">
             <!--<Setter Property="Background" Value="#FF2C3E50"/>
             <Setter Property="Foreground" Value="#DBDBDB"/>-->

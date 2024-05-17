@@ -16,8 +16,6 @@ namespace ProyectoBiblioteca.Pages
         {
             InitializeComponent();
             bbdd = new BibliotecaModel();
-
-            // Llamar a VerUsuarios al inicializar la ventana para cargar los datos automáticamente
             VerUsuarios(null, null);
         }
 
@@ -30,11 +28,8 @@ namespace ProyectoBiblioteca.Pages
             agregarUsuario.Owner = mainWindow;
 
             agregarUsuario.ShowDialog();
-
-            // Actualizar la lista de usuarios después de agregar uno nuevo
             ActualizarUsuario();
         }
-
         private void VerUsuarios(object sender, RoutedEventArgs e)
         {
             var usuarios = from usuario in bbdd.Usuarios
@@ -53,64 +48,46 @@ namespace ProyectoBiblioteca.Pages
             gridResultados.ItemsSource = usuarios.ToList();
         }
 
-        private void probar(object sender, RoutedEventArgs e)
-        {
-            if (gridResultados.SelectedItem != null)
-            {
-                dynamic usuarioSeleccionado = gridResultados.SelectedItem;
-                int idUsuario = usuarioSeleccionado.ID_Usuario;
-
-                // usuarioSeleccionado = bbdd.Usuarios.FirstOrDefault(u => u.ID_Usuario == idUsuario);
-
-                //    EditarUsuarioWindow editarUsuarioWindow = new EditarUsuarioWindow(idUsuario);
-
-
-                     MessageBox.Show(idUsuario.ToString());
-
-                    VentanaPrestamos ventanaPrestamos = new VentanaPrestamos(idUsuario);
-
-                    NavigationService.Navigate(ventanaPrestamos);
-
-                
-                // Crear una instancia del Page VentanaPrestamos pasando el usuario seleccionado como parámetro
-
-                // Navegar a la página VentanaPrestamos
-            }
-            else
-            {
-                MessageBox.Show("Por favor, seleccione un usuario en el DataGrid.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-        }
-
-
         private void EliminarUsuario(object sender, RoutedEventArgs e)
         {
             if (gridResultados.SelectedItem != null)
             {
                 MessageBoxResult result = MessageBox.Show("¿Está seguro de que desea eliminar este usuario?",
-                "Confirmar eliminación", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                    "Confirmar eliminación", MessageBoxButton.YesNo, MessageBoxImage.Question);
 
                 if (result == MessageBoxResult.Yes)
                 {
                     try
                     {
-                        Usuarios usuarioSeleccionado = (Usuarios)gridResultados.SelectedItem;
+                        dynamic usuarioSeleccionado = gridResultados.SelectedItem;
+                        int idUsuario = usuarioSeleccionado.ID_Usuario;
 
-                        bbdd.Usuarios.Remove(usuarioSeleccionado);
-                        bbdd.SaveChanges();
-
-                        // Actualizar la lista de usuarios después de eliminar uno
-                        ActualizarUsuario();
+                        var usuario = bbdd.Usuarios.FirstOrDefault(u => u.ID_Usuario == idUsuario);
+                        if (usuario != null)
+                        {
+                            bbdd.Usuarios.Remove(usuario);
+                            bbdd.SaveChanges();
+                            ActualizarUsuario();
+                            MessageBox.Show("El usuario se ha eliminado correctamente.", "Eliminación exitosa",
+                                MessageBoxButton.OK, MessageBoxImage.Information);
+                        }
+                        else
+                        {
+                            MessageBox.Show("No se pudo encontrar el usuario para eliminar.", "Error",
+                                MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("Error al eliminar el usuario: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show("Error al eliminar el usuario: " + ex.Message, "Error",
+                            MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                 }
             }
             else
             {
-                MessageBox.Show("Por favor, seleccione un usuario para eliminar", "Selección requerida", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Por favor, seleccione un usuario para eliminar.", "Selección requerida", MessageBoxButton.OK,
+                    MessageBoxImage.Warning);
             }
         }
 

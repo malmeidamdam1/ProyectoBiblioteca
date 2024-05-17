@@ -37,13 +37,10 @@ namespace ProyectoBiblioteca.Ventanas
                     return;
                 }
 
-                // Obtener el último valor de ID_Pelicula
                 int ultimoID = bbdd.Peliculas.Max(p => p.ID_Pelicula);
 
-                // Incrementar el valor para asignarlo a la nueva película
                 int nuevoID = ultimoID + 1;
 
-                // Obtener los datos ingresados por el usuario
                 string titulo = txtTitulo.Text;
                 string director = txtDirector.Text;
                 string genero = txtGenero.Text;
@@ -51,7 +48,6 @@ namespace ProyectoBiblioteca.Ventanas
                 int duracion = int.Parse(txtDuracion.Text);
                 int existencias = int.Parse(txtExistencias.Text);
 
-                // Crear un nuevo objeto Pelicula
                 Peliculas nuevaPelicula = new Peliculas
                 {
                     ID_Pelicula = nuevoID,
@@ -62,12 +58,8 @@ namespace ProyectoBiblioteca.Ventanas
                     Duracion = duracion,
                     Existencias = existencias
                 };
-
-                // Agregar la nueva película al contexto y guardar los cambios en la base de datos
                 bbdd.Peliculas.Add(nuevaPelicula);
                 bbdd.SaveChanges();
-
-                // Cerrar la ventana
                 this.Close();
             }
             catch (Exception ex)

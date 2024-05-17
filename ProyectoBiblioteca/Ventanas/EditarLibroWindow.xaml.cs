@@ -17,30 +17,44 @@ namespace ProyectoBiblioteca.Ventanas
 {
     public partial class EditarLibroWindow : Window
     {
-        private Libros libroEditar;
+        string isbn;
         private BibliotecaModel bbdd;
 
-        public EditarLibroWindow(Libros libro)
+        public EditarLibroWindow(string isbn)
         {
             InitializeComponent();
             WindowStartupLocation = WindowStartupLocation.CenterOwner;
-            libroEditar = libro;
+            this.isbn = isbn;
             bbdd = new BibliotecaModel();
+            CargarDatosLibro();
+        }
 
-            // Mostrar los datos del libro pasado como parámetro en los campos de texto
-            txtISBN.Text = libro.ISBN;
-            txtTitulo.Text = libro.Titulo;
-            txtAutor.Text = libro.Autor;
-            txtGenero.Text = libro.Genero;
-            txtAno.Text = libro.Anio.ToString();
-            txtEditorial.Text = libro.Editorial;
-            txtExistencias.Text = libro.Existencias.ToString();
+        private void CargarDatosLibro()
+        {
+            var libroEditar = bbdd.Libros.FirstOrDefault(l => l.ISBN == isbn);
+            if (libroEditar != null)
+            {
+                // Mostrar los datos del libro pasado como parámetro en los campos de texto
+                txtISBN.Text = libroEditar.ISBN;
+                txtTitulo.Text = libroEditar.Titulo;
+                txtAutor.Text = libroEditar.Autor;
+                txtGenero.Text = libroEditar.Genero;
+                txtAno.Text = libroEditar.Anio.ToString();
+                txtEditorial.Text = libroEditar.Editorial;
+                txtExistencias.Text = libroEditar.Existencias.ToString();
+            }
+            else 
+            {
+                MessageBox.Show("No se pudo encontrar el libro", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                this.Close();
+            }
         }
 
         private void Guardar_Click(object sender, RoutedEventArgs e)
         {
             try
             {
+                var libroEditar = bbdd.Libros.FirstOrDefault(l => l.ISBN == isbn);
 
                 if (string.IsNullOrWhiteSpace(txtISBN.Text) || string.IsNullOrWhiteSpace(txtTitulo.Text) ||
                      string.IsNullOrWhiteSpace(txtAutor.Text) || string.IsNullOrWhiteSpace(txtGenero.Text) ||
@@ -69,9 +83,6 @@ namespace ProyectoBiblioteca.Ventanas
                     MessageBox.Show("Por favor, ingrese un número válido de existencias.", "Error de formato", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
-
-
-                // Obtener los datos modificados
                 libroEditar.ISBN = txtISBN.Text;
                 libroEditar.Titulo = txtTitulo.Text;
                 libroEditar.Autor = txtAutor.Text;
@@ -80,10 +91,8 @@ namespace ProyectoBiblioteca.Ventanas
                 libroEditar.Editorial = txtEditorial.Text;
                 libroEditar.Existencias = int.Parse(txtExistencias.Text);
 
-                // Guardar los cambios en la base de datos
                 bbdd.SaveChanges();
 
-                // Cerrar la ventana
                 this.Close();
             }
             catch (Exception ex)

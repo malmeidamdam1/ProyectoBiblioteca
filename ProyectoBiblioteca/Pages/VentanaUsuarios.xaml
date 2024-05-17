@@ -22,6 +22,5 @@
         <Button Content="Eliminar usuario" HorizontalAlignment="Left" Margin="518,115,0,0" VerticalAlignment="Top" Width="215" Click="EliminarUsuario" Height="50"/>
 
         <Button Content="Editar usuario" HorizontalAlignment="Left" Margin="760,115,0,0" VerticalAlignment="Top" Width="215" Click="EditarUsuario" Height="50"/>
-        <Button Content="VERPRESTAMOS" HorizontalAlignment="Left" Margin="759,21,0,0" VerticalAlignment="Top" Width="216" Click="probar" Height="50"/>
     </Grid>
 </Page>

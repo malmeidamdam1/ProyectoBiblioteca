@@ -20,22 +20,22 @@
         </Grid.RowDefinitions>
 
         <Label Content="Título:" Grid.Row="0"/>
-        <TextBox x:Name="txtTitulo" Grid.Row="0" Margin="100,0,0,0"/>
+        <TextBox x:Name="txtTitulo" Grid.Row="0" Margin="110,0,0,0"/>
 
         <Label Content="Director:" Grid.Row="1"/>
-        <TextBox x:Name="txtDirector" Grid.Row="1" Margin="100,0,0,0"/>
+        <TextBox x:Name="txtDirector" Grid.Row="1" Margin="110,0,0,0"/>
 
         <Label Content="Género:" Grid.Row="2"/>
-        <TextBox x:Name="txtGenero" Grid.Row="2" Margin="100,0,0,0"/>
+        <TextBox x:Name="txtGenero" Grid.Row="2" Margin="110,0,0,0"/>
 
         <Label Content="Año:" Grid.Row="3"/>
-        <TextBox x:Name="txtAno" Grid.Row="3" Margin="100,0,0,0"/>
+        <TextBox x:Name="txtAno" Grid.Row="3" Margin="110,0,0,0"/>
 
         <Label Content="Duración (min):" Grid.Row="4"/>
-        <TextBox x:Name="txtDuracion" Grid.Row="4" Margin="100,0,0,0"/>
+        <TextBox x:Name="txtDuracion" Grid.Row="4" Margin="110,0,0,0"/>
 
         <Label Content="Existencias:" Grid.Row="5"/>
-        <TextBox x:Name="txtExistencias" Grid.Row="5" Margin="100,0,0,0"/>
+        <TextBox x:Name="txtExistencias" Grid.Row="5" Margin="110,0,0,0"/>
 
         <StackPanel Orientation="Horizontal" Grid.Row="8" HorizontalAlignment="Center" Margin="0,20,0,0">
             <Button x:Name="botonGuardar" Content="Guardar" Width="280" Height="40" Click="Guardar_Click" Margin="10,0,10,0"/>

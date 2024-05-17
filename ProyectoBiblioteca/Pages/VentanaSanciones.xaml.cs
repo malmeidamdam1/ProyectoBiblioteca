@@ -29,6 +29,7 @@ namespace ProyectoBiblioteca.Pages
             cmbUsuarios.SelectedValuePath = "ID_Usuario";
             cmbUsuarios.SelectedIndex = 0;
             CargarSanciones();
+            MessageBox.Show($"Cargando al usuario {usuario.Nombre}, complete el motivo y duración de la sanción.", "Sancionando usuario", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         public VentanaSanciones()
@@ -65,7 +66,6 @@ namespace ProyectoBiblioteca.Pages
         {
             try
             {
-                // Cargamos las columnas y no el objeto entero para evitar la columna de Usuarios
                 var sanciones = bbdd.Sanciones.Select(s => new { ID_Sancion = s.ID_Sancion, Motivo = s.Motivo, FechaSancion = s.FechaSancion, FechaFinSancion = s.FechaFinSancion }).ToList();
                 gridSanciones.ItemsSource = sanciones;
             }

@@ -38,17 +38,14 @@ namespace ProyectoBiblioteca.Pages
 
         private void GenerarInforme_Click(object sender, RoutedEventArgs e)
         {
-            // Validar selección de obra o usuario y tipo de informe
             //if (cmbTipoInforme.SelectedItem == null || ((cmbPeliculas.SelectedItem == null && cmbLibros.SelectedItem == null) && cmbUsuarios.SelectedItem == null))
             if (cmbTipoInforme.SelectedItem == null)
             {
-                // MessageBox.Show("Por favor, seleccione una obra o un usuario y el tipo de informe.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 MessageBox.Show("Por favor, seleccione el tipo de informe.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             string tipoInforme = (cmbTipoInforme.SelectedItem as ComboBoxItem).Content.ToString();
 
-            // Generar informe según el tipo seleccionado
             switch (tipoInforme)
             {
                 case "Porcentaje de préstamos [obra]":
@@ -57,14 +54,14 @@ namespace ProyectoBiblioteca.Pages
                 case "Género más popular [obra]":
                     GenerarInformeGeneroPopular();
                     break;
-                case "Obra más solicitada [obra]":
+                case "Obra más solicitada":
                     GenerarInformeObraMasSolicitada();
                     break;
                 case "Porcentaje de sanciones [usuario]":
-                     GenerarInformePorcentajeSanciones();
+                    GenerarInformePorcentajeSanciones();
                     break;
                 case "Veces se ha prestado [usuario]":
-                        GenerarInformeVecesPrestado();
+                    GenerarInformeVecesPrestado();
                     break;
                 default:
                     MessageBox.Show("Tipo de informe no válido.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -90,7 +87,6 @@ namespace ProyectoBiblioteca.Pages
                 }
                 else if (cmbLibros.SelectedItem != null)
                 {
-                    MessageBox.Show(cmbLibros.SelectedValue.ToString());
                     idLibro = cmbLibros.SelectedValue.ToString();
                     tituloObra = (cmbLibros.SelectedItem as Libros)?.Titulo;
                     prestamosObra = bbdd.Prestamos.Where(p => p.ID_Libro == idLibro.ToString()).Count();
@@ -107,8 +103,6 @@ namespace ProyectoBiblioteca.Pages
             }
         }
 
-
-
         private void GenerarInformeGeneroPopular()
         {
             string generoPopular = "";
@@ -116,115 +110,129 @@ namespace ProyectoBiblioteca.Pages
             if (cmbPeliculas.SelectedItem != null)
             {
                 tipoObra = "las películas";
-                // Obtener todas las películas de la base de datos
                 var peliculas = bbdd.Peliculas.ToList();
 
-                // Obtener el género más popular de las películas
                 generoPopular = peliculas
-                    .SelectMany(p => p.Genero.Split(',')) // Dividir los géneros en una lista
+                    .SelectMany(p => p.Genero.Split(',')) // Crear un array de gé>neros
                     .GroupBy(g => g.Trim()) // Agrupar por género y eliminar espacios en blanco
                     .OrderByDescending(grp => grp.Count()) // Ordenar por frecuencia
-                    .Select(grp => grp.Key) // Seleccionar el género
+                    .Select(grp => grp.Key) // Obtener el género
                     .FirstOrDefault(); // Tomar el primer género más popular
             }
             else if (cmbLibros.SelectedItem != null)
             {
                 tipoObra = "los libros";
-                // Obtener todos los libros de la base de datos
                 var libros = bbdd.Libros.ToList();
 
-                // Obtener el género más popular de los libros
                 generoPopular = libros
-                    .SelectMany(l => l.Genero.Split(',')) // Dividir los géneros en una lista
-                    .GroupBy(g => g.Trim()) // Agrupar por género y eliminar espacios en blanco
-                    .OrderByDescending(grp => grp.Count()) // Ordenar por frecuencia
-                    .Select(grp => grp.Key) // Seleccionar el género
-                    .FirstOrDefault(); // Tomar el primer género más popular
+                    .SelectMany(l => l.Genero.Split(','))
+                    .GroupBy(g => g.Trim())
+                    .OrderByDescending(grp => grp.Count())
+                    .Select(grp => grp.Key)
+                    .FirstOrDefault();
             }
 
             if (!string.IsNullOrEmpty(generoPopular))
             {
-                MessageBox.Show($"El género más popular en {tipoObra} es: {generoPopular}", "Informe", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show($"El género más predominante en {tipoObra} es: {generoPopular}", "Informe", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             else
             {
                 MessageBox.Show("Debe seleccionar una obra (libro o película) para generar el informe.", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
+
+
+        // No requiere de una obra seleccionada
         private void GenerarInformeObraMasSolicitada()
         {
             string obraMasSolicitada = "";
+            string tipoObra = "";
             int maxPrestamos = 0;
+            try
+            {
 
-            // Contar el número de préstamos para cada película
-            var prestamosPeliculas = bbdd.Prestamos.Where(p => p.Peliculas != null)
-                                                    .GroupBy(p => p.Peliculas.ID_Pelicula)
+                // Contar el número de préstamos para cada película
+                var prestamosPeliculas = bbdd.Prestamos.Where(p => p.Peliculas != null)
+                                                        .GroupBy(p => p.Peliculas.ID_Pelicula)
+                                                        .Select(g => new
+                                                        {
+                                                            ISBN = g.Key,
+                                                            NumPrestamos = g.Count()
+                                                        });
+
+                // Contar el número de préstamos para cada libro
+                var prestamosLibros = bbdd.Prestamos.Where(p => p.Libros != null)
+                                                    .GroupBy(p => p.Libros.ISBN)
                                                     .Select(g => new
                                                     {
-                                                        ISBN = g.Key,
+                                                        ID_Libro = g.Key,
                                                         NumPrestamos = g.Count()
                                                     });
 
-            // Contar el número de préstamos para cada libro
-            var prestamosLibros = bbdd.Prestamos.Where(p => p.Libros != null)
-                                                .GroupBy(p => p.Libros.ISBN)
-                                                .Select(g => new
-                                                {
-                                                    ID_Libro = g.Key,
-                                                    NumPrestamos = g.Count()
-                                                });
+                // Obtener la película con más préstamos
+                var peliculaMasSolicitada = prestamosPeliculas.OrderByDescending(p => p.NumPrestamos).FirstOrDefault();
+                if (peliculaMasSolicitada != null && peliculaMasSolicitada.NumPrestamos > maxPrestamos)
+                {
+                    maxPrestamos = peliculaMasSolicitada.NumPrestamos;
+                    obraMasSolicitada = bbdd.Peliculas.FirstOrDefault(p => p.ID_Pelicula == peliculaMasSolicitada.ISBN)?.Titulo;
+                    tipoObra = "la película";
+                }
 
-            // Obtener la película con más préstamos
-            var peliculaMasSolicitada = prestamosPeliculas.OrderByDescending(p => p.NumPrestamos).FirstOrDefault();
-            if (peliculaMasSolicitada != null && peliculaMasSolicitada.NumPrestamos > maxPrestamos)
-            {
-                maxPrestamos = peliculaMasSolicitada.NumPrestamos;
-                obraMasSolicitada = bbdd.Peliculas.FirstOrDefault(p => p.ID_Pelicula == peliculaMasSolicitada.ISBN)?.Titulo;
-            }
+                // Obtener el libro con más préstamos y verificar si le gana al mayor de películas
+                var libroMasSolicitado = prestamosLibros.OrderByDescending(p => p.NumPrestamos).FirstOrDefault();
+                if (libroMasSolicitado != null && libroMasSolicitado.NumPrestamos > maxPrestamos)
+                {
+                    maxPrestamos = libroMasSolicitado.NumPrestamos;
+                    obraMasSolicitada = bbdd.Libros.FirstOrDefault(l => l.ISBN == libroMasSolicitado.ID_Libro)?.Titulo;
+                    tipoObra = "el libro";
+                }
 
-            // Obtener el libro con más préstamos
-            var libroMasSolicitado = prestamosLibros.OrderByDescending(p => p.NumPrestamos).FirstOrDefault();
-            if (libroMasSolicitado != null && libroMasSolicitado.NumPrestamos > maxPrestamos)
-            {
-                maxPrestamos = libroMasSolicitado.NumPrestamos;
-                obraMasSolicitada = bbdd.Libros.FirstOrDefault(l => l.ISBN == libroMasSolicitado.ID_Libro)?.Titulo;
+                if (!string.IsNullOrEmpty(obraMasSolicitada))
+                {
+                    MessageBox.Show($"La obra más solicitada es {tipoObra}: {obraMasSolicitada}, con {maxPrestamos} préstamos.", "Informe", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                else
+                {
+                    MessageBox.Show("No hay una obra más solicitada, no se encontraron préstamos registrados.", "Informe", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
             }
-
-            // Mostrar la obra más solicitada y la cantidad de préstamos
-            if (!string.IsNullOrEmpty(obraMasSolicitada))
+            catch (Exception ex)
             {
-                MessageBox.Show($"La obra más solicitada es: {obraMasSolicitada}, con {maxPrestamos} préstamos.", "Informe", MessageBoxButton.OK, MessageBoxImage.Information);
-            }
-            else
-            {
-                MessageBox.Show("No hay una obra más solicitada, no se encontraron préstamos registrados.", "Informe", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show($"Error al generar el informe: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
 
-
         private void GenerarInformePorcentajeSanciones()
         {
-            if (cmbUsuarios.SelectedItem != null)
+            try
             {
-                int idUsuario = (int)cmbUsuarios.SelectedValue;
-                string nombreUsuario = (cmbUsuarios.SelectedItem as dynamic)?.Nombre;
-                int totalSanciones = bbdd.Sanciones.Count();
-                int sancionesUsuario = bbdd.Sanciones.Where(s => s.ID_Usuario == idUsuario).Count();
-
-                if (totalSanciones > 0)
+                if (cmbUsuarios.SelectedItem != null)
                 {
-                    double porcentajeSanciones = Math.Round((double)sancionesUsuario / totalSanciones * 100, 2);
-                    MessageBox.Show($"El usuario {nombreUsuario} consta en un: {porcentajeSanciones}% de las sanciones totales actualmente", "Informe", MessageBoxButton.OK, MessageBoxImage.Information);
+                    int idUsuario = (int)cmbUsuarios.SelectedValue;
+                    string nombreUsuario = (cmbUsuarios.SelectedItem as dynamic)?.Nombre;
+                    int totalSanciones = bbdd.Sanciones.Count();
+                    int sancionesUsuario = bbdd.Sanciones.Where(s => s.ID_Usuario == idUsuario).Count();
+
+                    if (totalSanciones > 0)
+                    {
+                        double porcentajeSanciones = Math.Round((double)sancionesUsuario / totalSanciones * 100, 2);
+                        MessageBox.Show($"El usuario {nombreUsuario} consta en un: {porcentajeSanciones}% de las sanciones totales actualmente", "Informe", MessageBoxButton.OK, MessageBoxImage.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show($"No hay sanciones registradas en la base de datos.", "Informe", MessageBoxButton.OK, MessageBoxImage.Information);
+                    }
                 }
                 else
                 {
-                    MessageBox.Show($"No hay sanciones registradas en la base de datos.", "Informe", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("Debe seleccionar un usuario para generar el informe.", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Debe seleccionar un usuario para generar el informe.", "Advertencia", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show($"Error al generar el informe: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -237,7 +245,14 @@ namespace ProyectoBiblioteca.Pages
 
                 int prestamosUsuario = bbdd.Prestamos.Where(p => p.ID_Usuario == idUsuario).Count();
 
-                MessageBox.Show($"El usuario {nombreUsuario} ha realizado {prestamosUsuario} préstamos en la biblioteca.", "Informe", MessageBoxButton.OK, MessageBoxImage.Information);
+                if (prestamosUsuario <= 1)
+                {
+                    MessageBox.Show($"El usuario {nombreUsuario} ha realizado {prestamosUsuario} préstamo en la biblioteca.", "Informe", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                else
+                {
+                    MessageBox.Show($"El usuario {nombreUsuario} ha realizado {prestamosUsuario} préstamos en la biblioteca.", "Informe", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
             }
             else
             {
@@ -289,15 +304,16 @@ namespace ProyectoBiblioteca.Pages
 
                 if (obraSeleccionada)
                 {
-                    if (tipoInforme == "Porcentaje de préstamos [obra]" || tipoInforme == "Género más popular [obra]" || tipoInforme == "Obra más solicitada [obra]")
+                    if (tipoInforme == "Porcentaje de préstamos [obra]" || tipoInforme == "Género más predominante [obra]" || tipoInforme == "Obra más solicitada")
                     {
                         item.IsEnabled = true;
                     }
-                    else
+                    else if (tipoInforme != "Obra más solicitada")
                     {
                         item.IsEnabled = false;
                     }
                 }
+
                 else if (usuarioSeleccionado)
                 {
                     if (tipoInforme == "Porcentaje de sanciones [usuario]" || tipoInforme == "Veces se ha prestado [usuario]")

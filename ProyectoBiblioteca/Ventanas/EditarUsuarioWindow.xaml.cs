@@ -17,7 +17,6 @@ namespace ProyectoBiblioteca.Ventanas
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
             this.idUsuario = idUsuario;
             bbdd = new BibliotecaModel();
-
             // Al abrir la ventana, cargar los datos del usuario en los campos de texto
             CargarDatosUsuario();
         }
@@ -46,7 +45,8 @@ namespace ProyectoBiblioteca.Ventanas
         {
             try
             {
-                // Validar los campos de entrada
+                var usuario = bbdd.Usuarios.FirstOrDefault(u => u.ID_Usuario == idUsuario);
+
                 if (string.IsNullOrWhiteSpace(txtNombre.Text) || string.IsNullOrWhiteSpace(txtApellido.Text) ||
                     string.IsNullOrWhiteSpace(txtCorreo.Text) || string.IsNullOrWhiteSpace(txtTelefono.Text))
                 {
@@ -66,18 +66,13 @@ namespace ProyectoBiblioteca.Ventanas
                     return;
                 }
 
-                // Buscar el usuario en la base de datos por su ID
-                var usuario = bbdd.Usuarios.FirstOrDefault(u => u.ID_Usuario == idUsuario);
-
                 if (usuario != null)
                 {
-                    // Actualizar los datos del usuario
                     usuario.Nombre = txtNombre.Text;
                     usuario.Apellido = txtApellido.Text;
                     usuario.CorreoElectronico = txtCorreo.Text;
                     usuario.Telefono = txtTelefono.Text;
 
-                    // Guardar los cambios en la base de datos
                     bbdd.SaveChanges();
                 }
 

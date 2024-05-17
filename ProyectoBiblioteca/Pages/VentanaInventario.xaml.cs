@@ -37,9 +37,7 @@ namespace ProyectoBiblioteca.Pages
             agregarLibroWindow.ShowDialog();
 
             ActualizarDataGridLibros();
-
         }
-
         private void AgregarPelicula(object sender, RoutedEventArgs e)
         {
             AgregarPeliculaWindow agregarPeliWindow = new AgregarPeliculaWindow();
@@ -52,19 +50,47 @@ namespace ProyectoBiblioteca.Pages
 
             ActualizarDataGridPeliculas();
         }
-
+        private void ActualizarDataGridLibros()
+        {
+            VerLibros(null, null);
+        }
+        private void ActualizarDataGridPeliculas()
+        {
+            VerPeliculas(null, null);
+        }
         private void VerLibros(object sender, RoutedEventArgs e)
         {
+            labelViendo.Content = "Visualizando la lista de libros";
             var libros = from libro in bbdd.Libros
-                         select libro;
+                         select new
+                         {
+                             ISBN = libro.ISBN,
+                             Título = libro.Titulo,
+                             Autor = libro.Autor,
+                             Género = libro.Genero,
+                             Año = libro.Anio,
+                             Editorial = libro.Editorial,
+                             Existencias = libro.Existencias,
+                         };
 
             gridResultados.ItemsSource = libros.ToList();
         }
 
         private void VerPeliculas(object sender, RoutedEventArgs e)
         {
+            labelViendo.Content = "Visualizando la lista de películas";
+
             var peliculas = from pelicula in bbdd.Peliculas
-                            select pelicula;
+                            select new
+                            {
+                                ID_Película = pelicula.ID_Pelicula,
+                                Título = pelicula.Titulo,
+                                Director = pelicula.Director,
+                                Género = pelicula.Genero,
+                                Año = pelicula.Anio,
+                                Duración_Mints = pelicula.Duracion,
+                                Existencias = pelicula.Existencias,
+                            };
 
             gridResultados.ItemsSource = peliculas.ToList();
         }
@@ -73,25 +99,33 @@ namespace ProyectoBiblioteca.Pages
         {
             if (gridResultados.SelectedItem != null)
             {
-                MessageBoxResult result = MessageBox.Show("¿Está seguro de que desea eliminar este libro?", 
+                MessageBoxResult result = MessageBox.Show("¿Está seguro de que desea eliminar este libro?",
                     "Confirmar eliminación", MessageBoxButton.YesNo, MessageBoxImage.Question);
-
                 if (result == MessageBoxResult.Yes)
                 {
                     try
                     {
-                        Libros libroSeleccionado = (Libros)gridResultados.SelectedItem;
-
-                        bbdd.Libros.Remove(libroSeleccionado);
-                        bbdd.SaveChanges();
-
-                        ActualizarDataGridLibros();
+                        dynamic seleccion = gridResultados.SelectedItem;
+                        string isbn = seleccion.ISBN;
+                        var libroSeleccionado = bbdd.Libros.FirstOrDefault(l => l.ISBN == isbn);
+                        if (libroSeleccionado != null)
+                        {
+                            bbdd.Libros.Remove(libroSeleccionado);
+                            bbdd.SaveChanges();
+                            ActualizarDataGridLibros();
+                            MessageBox.Show("El libro se ha eliminado correctamente.", "Eliminación exitosa",
+                                             MessageBoxButton.OK, MessageBoxImage.Information); 
+                        }
+                        else
+                        {
+                            MessageBox.Show("No se pudo encontrar el libro para eliminar.", "Error",
+                                MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("Error al eliminar el libro: " + ex.Message, "Error", 
-                            MessageBoxButton.OK, 
-                            MessageBoxImage.Error);
+                        MessageBox.Show("Error al eliminar el libro: " + ex.Message, "Error",
+                            MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                 }
             }
@@ -100,53 +134,48 @@ namespace ProyectoBiblioteca.Pages
                 MessageBox.Show("Por favor, seleccione un libro para eliminar.", "Selección requerida", MessageBoxButton.OK,
                     MessageBoxImage.Warning);
             }
-            ActualizarDataGridLibros();
         }
 
-        private void ActualizarDataGridLibros()
-        {
-            var libros = from libro in bbdd.Libros
-                         select libro;
-            gridResultados.ItemsSource = libros.ToList();
-        }
-
-
-        private void EliminarPeliculas(object sender, RoutedEventArgs e)
+        private void EliminarPelicula(object sender, RoutedEventArgs e)
         {
             if (gridResultados.SelectedItem != null)
             {
-                MessageBoxResult result = MessageBox.Show("¿Está seguro de que desea eliminar esta película?", "Confirmar eliminación", MessageBoxButton.YesNo, MessageBoxImage.Question);
-
+                MessageBoxResult result = MessageBox.Show("¿Está seguro de que desea eliminar esta película?",
+                    "Confirmar eliminación", MessageBoxButton.YesNo, MessageBoxImage.Question);
                 if (result == MessageBoxResult.Yes)
                 {
                     try
                     {
-                        Peliculas peliculaSeleccionada = (Peliculas)gridResultados.SelectedItem;
+                        dynamic seleccion = gridResultados.SelectedItem;
+                        int idPelicula = seleccion.ID_Película;
+                        var peliculaSeleccionada = bbdd.Peliculas.FirstOrDefault(p => p.ID_Pelicula == idPelicula);
+                        if (peliculaSeleccionada != null)
+                        {
+                            bbdd.Peliculas.Remove(peliculaSeleccionada);
+                            bbdd.SaveChanges();
+                            ActualizarDataGridPeliculas();
+                            MessageBox.Show("La película se ha eliminado correctamente.", "Eliminación exitosa",
+                                MessageBoxButton.OK, MessageBoxImage.Information);
 
-                        bbdd.Peliculas.Remove(peliculaSeleccionada);
-                        bbdd.SaveChanges();
-
-                        ActualizarDataGridPeliculas();
+                        }
+                        else
+                        {
+                            MessageBox.Show("No se pudo encontrar la película para eliminar.", "Error",
+                                MessageBoxButton.OK, MessageBoxImage.Error);
+                        }
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("Error al eliminar la película: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show("Error al eliminar la película: " + ex.Message, "Error",
+                            MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                 }
             }
             else
             {
-                MessageBox.Show("Por favor, seleccione una película para eliminar.", "Selección requerida", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Por favor, seleccione una película para eliminar.", "Selección requerida", MessageBoxButton.OK,
+                    MessageBoxImage.Warning);
             }
-            ActualizarDataGridPeliculas();
-        }
-
-        private void ActualizarDataGridPeliculas()
-        {
-            var peliculas = from pelicula in bbdd.Peliculas
-                            select pelicula;
-
-            gridResultados.ItemsSource = peliculas.ToList();
         }
 
         private void EditarLibro(object sender, RoutedEventArgs e)
@@ -155,10 +184,12 @@ namespace ProyectoBiblioteca.Pages
             {
                 if (gridResultados.SelectedItem != null)
                 {
-                    Libros libroSeleccionado = (Libros)gridResultados.SelectedItem;
-                    EditarLibroWindow editarLibroWindow = new EditarLibroWindow(libroSeleccionado);
+                    dynamic seleccion = gridResultados.SelectedItem;
+                    string isbn = seleccion.ISBN;
+                    Window mainWindow = Window.GetWindow(this);
+                    EditarLibroWindow editarLibroWindow = new EditarLibroWindow(isbn);
+                    editarLibroWindow.Owner = mainWindow;
                     editarLibroWindow.ShowDialog();
-                    ActualizarDataGridLibros();
                 }
                 else
                 {
@@ -167,7 +198,7 @@ namespace ProyectoBiblioteca.Pages
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error al abrir la ventana de edición de libro. " + "Por favor asegúrese de que ha seleccionado el tipo de obra adecuado", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Error al abrir la ventana de edición de libro." + "Por favor asegúrese de que ha seleccionado el tipo de obra adecuado", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             ActualizarDataGridLibros();
         }
@@ -178,13 +209,12 @@ namespace ProyectoBiblioteca.Pages
             {
                 if (gridResultados.SelectedItem != null)
                 {
-                    Peliculas peliculaSeleccionada = (Peliculas)gridResultados.SelectedItem;
-
-                    EditarPeliculaWindow editarPeliWindow = new EditarPeliculaWindow(peliculaSeleccionada);
-
+                    dynamic seleccion = gridResultados.SelectedItem;
+                    int id_peli = seleccion.ID_Película;
+                    Window mainWindow = Window.GetWindow(this);
+                    EditarPeliculaWindow editarPeliWindow = new EditarPeliculaWindow(id_peli);
+                    editarPeliWindow.Owner = mainWindow;
                     editarPeliWindow.ShowDialog();
-
-                    ActualizarDataGridLibros();
                 }
                 else
                 {
@@ -199,5 +229,4 @@ namespace ProyectoBiblioteca.Pages
         }
 
     }
-
 }

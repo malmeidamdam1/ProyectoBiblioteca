@@ -44,14 +44,15 @@
             <Label Content="Tipo de Informe:" VerticalAlignment="Center" Margin="0,0,10,0" Width="120"/>
             <ComboBox x:Name="cmbTipoInforme" Width="300">
                 <ComboBoxItem Content="Porcentaje de préstamos [obra]" IsEnabled="False"/>
-                <ComboBoxItem Content="Género más popular [obra]" IsEnabled="False"/>
-                <ComboBoxItem Content="Obra más solicitada [obra]" IsEnabled="False" />
+                <ComboBoxItem Content="Género más predominante [obra]" IsEnabled="False"/>
+                <ComboBoxItem Content="Obra más solicitada" IsEnabled="True" />
                 <ComboBoxItem Content="Porcentaje de sanciones [usuario]" IsEnabled="False" />
                 <ComboBoxItem Content="Veces se ha prestado [usuario]" IsEnabled="False" />
             </ComboBox>
         </StackPanel>
 
         <!-- Botón para generar informe -->
-        <Button x:Name="btnGenerarInforme" Grid.Row="5" Margin="50" Content="Generar Informe" HorizontalAlignment="Center" VerticalAlignment="Center" Height="75" Width="200" Click="GenerarInforme_Click" />
+        <Button x:Name="btnGenerarInforme" Grid.Row="5"  Content="Generar Informe" HorizontalAlignment="Center" 
+                VerticalAlignment="Center" Height="75" Width="200" Click="GenerarInforme_Click" Margin="20,20,20,20"/>
     </Grid>
 </Page>

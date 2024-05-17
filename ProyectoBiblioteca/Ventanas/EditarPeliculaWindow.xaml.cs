@@ -17,27 +17,43 @@ namespace ProyectoBiblioteca.Ventanas
 {
     public partial class EditarPeliculaWindow : Window
     {
-        private Peliculas peliculaEditar;
+        int id_peli;
         private BibliotecaModel bbdd;
 
-        public EditarPeliculaWindow(Peliculas pelicula)
+        public EditarPeliculaWindow(int id_peli)
         {
             InitializeComponent();
-            peliculaEditar = pelicula;
+            WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            this.id_peli = id_peli;
             bbdd = new BibliotecaModel();
-
-            txtTitulo.Text = peliculaEditar.Titulo;
-            txtDirector.Text = peliculaEditar.Director;
-            txtGenero.Text = peliculaEditar.Genero;
-            txtAno.Text = peliculaEditar.Anio.ToString();
-            txtDuracion.Text = peliculaEditar.Duracion.ToString();
-            txtExistencias.Text = peliculaEditar.Existencias.ToString();
+            CargarDatosPelicula();
+        }
+        private void CargarDatosPelicula()
+        {
+            var peliculaEditar = bbdd.Peliculas.FirstOrDefault(p => p.ID_Pelicula == id_peli);
+            if (peliculaEditar != null)
+            {
+                txtTitulo.Text = peliculaEditar.Titulo;
+                txtDirector.Text = peliculaEditar.Director;
+                txtGenero.Text = peliculaEditar.Genero;
+                txtAno.Text = peliculaEditar.Anio.ToString();
+                txtDuracion.Text = peliculaEditar.Duracion.ToString();
+                txtExistencias.Text = peliculaEditar.Existencias.ToString();
+            }
+            else
+            {
+                MessageBox.Show("No se pudo encontrar el libro", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                this.Close();
+            }
         }
 
+       
         private void Guardar_Click(object sender, RoutedEventArgs e)
         {
             try
             {
+                var peliculaEditar = bbdd.Peliculas.FirstOrDefault(p => p.ID_Pelicula == id_peli);
+
                 if (!int.TryParse(txtAno.Text, out _))
                 {
                     MessageBox.Show("Por favor, ingrese un año válido.", "Error de formato", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -64,10 +80,7 @@ namespace ProyectoBiblioteca.Ventanas
                 peliculaEditar.Duracion = int.Parse(txtDuracion.Text);
                 peliculaEditar.Existencias = int.Parse(txtExistencias.Text);
 
-
                 bbdd.SaveChanges();
-
-
                 this.Close();
             }
             catch (Exception ex)

@@ -12,23 +12,11 @@ namespace ProyectoBiblioteca.Pages
         private BibliotecaModel bbdd;
         private int idUsuario;
 
-
         public VentanaPrestamos()
         {
             InitializeComponent();
             bbdd = new BibliotecaModel();
             MostrarPrestamosActivos();
-        }
-
-        public VentanaPrestamos(int idUsuario)
-        {
-            InitializeComponent();
-            this.idUsuario = idUsuario;
-            bbdd = new BibliotecaModel();
-            Usuarios usuarioSeleccionado = bbdd.Usuarios.FirstOrDefault(u => u.ID_Usuario == idUsuario);
-            MostrarPrestamosActivos();
-            MessageBox.Show($"Usuario seleccionado: {usuarioSeleccionado.Nombre}", "Información", MessageBoxButton.OK, MessageBoxImage.Information);
-
         }
 
         private void RegistrarPrestamo(object sender, RoutedEventArgs e)
@@ -50,17 +38,12 @@ namespace ProyectoBiblioteca.Pages
 
                     if (result == MessageBoxResult.Yes)
                     {
-                        // Obtener el préstamo seleccionado en el DataGrid
                         dynamic prestamoSeleccionado = gridResultados.SelectedItem;
-
                         int idPrestamo = prestamoSeleccionado.ID_Prestamo;
-
-                        // Mostrar ventana de confirmación
 
                         int ultimoIdDevolucion = bbdd.Devoluciones.Any() ? bbdd.Devoluciones.Max(p => p.ID_Devolucion) : 0;
                         int nuevoIdDevolucion = ultimoIdDevolucion + 1;
 
-                        // Crear una nueva instancia de Devoluciones
                         Devoluciones nuevaDevolucion = new Devoluciones
                         {
                             ID_Devolucion = nuevoIdDevolucion,
@@ -94,11 +77,9 @@ namespace ProyectoBiblioteca.Pages
                 {
                     dynamic prestamoSeleccionado = gridResultados.SelectedItem;
                     int idUsuario = prestamoSeleccionado.ID_Usuario;
-
                     // Navegar hacia la ventana de Sanciones y pasar el ID_Usuario como parámetro
                     VentanaSanciones ventanaSanciones = new VentanaSanciones(idUsuario);
                     NavigationService.Navigate(ventanaSanciones);
-
                     MostrarPrestamosActivos();
                 }
                 else
@@ -106,9 +87,9 @@ namespace ProyectoBiblioteca.Pages
                     MessageBox.Show("Por favor, seleccione un préstamo para registrar la sanción.", "Selección requerida", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show("Error al registrar la sanción: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Error al registrar la sanción. Por favor asegúrese de haber seleccionado un préstamo activo.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -137,7 +118,6 @@ namespace ProyectoBiblioteca.Pages
             gridResultados.ItemsSource = devoluciones.ToList();
         }
 
-
         private void MostrarPrestamosActivos()
         {
             labelDataGrid.Content = "Préstamos activos";
@@ -160,7 +140,5 @@ namespace ProyectoBiblioteca.Pages
         {
             MostrarPrestamosActivos();
         }
-
-
     }
 }

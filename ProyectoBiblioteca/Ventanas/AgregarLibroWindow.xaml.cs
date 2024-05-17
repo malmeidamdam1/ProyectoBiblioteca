@@ -25,9 +25,7 @@ namespace ProyectoBiblioteca.Ventanas
             InitializeComponent();
             WindowStartupLocation = WindowStartupLocation.CenterOwner;
             bbdd = new BibliotecaModel();
-
         }
-
         private void Guardar_Click(object sender, RoutedEventArgs e)
         {
             try

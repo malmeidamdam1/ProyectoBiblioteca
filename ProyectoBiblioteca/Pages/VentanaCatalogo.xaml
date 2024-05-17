@@ -15,14 +15,18 @@
 
         <Label Content="Ingrese el parámetro [?] para la búsqueda" HorizontalAlignment="Left" Margin="102,94,0,0" VerticalAlignment="Top" Height="30" Width="350" FontSize="18" />
 
+        <TextBlock HorizontalAlignment="Left"  Margin="19,220,0,0" TextWrapping="Wrap" Text="Doble clic para ver detalles de la obra" 
+                   VerticalAlignment="Top" Height="58" Width="166" FontSize="18" FontFamily="Arial" Foreground="#DBDBDB"/>
+
+        <Image Source="/Images/Icons/flecha.png" Stretch="Uniform" Width="40" Height="40" HorizontalAlignment="Left" Margin="190,60,0,20"/>
+
         <TextBox x:Name="txtBusqueda" HorizontalAlignment="Left" Height="30" Margin="457,94,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="350"/>
-
         <DataGrid x:Name="gridResultados" AutoGenerateColumns="True" CanUserResizeColumns="False" CanUserResizeRows="False" CanUserReorderColumns="False" IsReadOnly="True" 
-                      Margin="97,232,70,10" MaxHeight="300" MaxWidth="800" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto" />
+                      Margin="246,225,102,95" MaxHeight="300" MaxWidth="800" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto" />
 
-        <Button Content="Buscar Libro" HorizontalAlignment="Right" Margin="0,160,160,0" VerticalAlignment="Top" Width="300" Click="BuscarLibro" Height="45"/>
+        <Button Content="Buscar Libro" HorizontalAlignment="Right" Margin="0,160,102,0" VerticalAlignment="Top" Width="300" Click="BuscarLibro" Height="45"/>
 
-        <Button Content="Buscar Pelicula" HorizontalAlignment="Left" Margin="160,160,0,0" VerticalAlignment="Top" Width="300" Click="BuscarPelicula" Height="45" />
+        <Button Content="Buscar Pelicula" HorizontalAlignment="Left" Margin="246,160,0,0" VerticalAlignment="Top" Width="300" Click="BuscarPelicula" Height="45" />
 
     </Grid>
 </Page>
