@@ -16,5 +16,5 @@ C:\Users\DAM Almeida\Desktop\ProyectoBiblioteca\ProyectoBiblioteca\App.xaml
 181614386383
 Pages\VentanaInforme.xaml;Pages\VentanaPrestamos.xaml;Pages\VentanaSanciones.xaml;Pages\VentanaUsuarios.xaml;Ventanas\AgregarPeliculaWindow.xaml;Ventanas\AgregarUsuarioVentana.xaml;MainWindow.xaml;Pages\VentanaCatalogo.xaml;Pages\VentanaInventario.xaml;Themes\Generic.xaml;Ventanas\AgregarLibroWindow.xaml;Ventanas\EditarLibroWindow.xaml;Ventanas\EditarPeliculaWindow.xaml;Ventanas\EditarUsuarioWindow.xaml;Ventanas\RegistrarPrestamoWindow.xaml;
 
-True
+False
 

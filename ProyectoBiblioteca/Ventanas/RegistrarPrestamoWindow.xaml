@@ -13,7 +13,8 @@
             <ColumnDefinition Width="400"/>
         </Grid.ColumnDefinitions>
 
-        <!-- ListBox y label para seleccionar un libro -->
+        <!-- ListBox y label para seleccionar un libro + Botón informativo -->
+        <Button Content="?" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,10,20,0" Click="MostrarAyuda_Click" Height="25" Width="25"/>
         <Label Content="Libro a prestar:" Grid.Row="0" Grid.Column="0" Height="30" Margin="50,0,50,80" VerticalAlignment="Center" HorizontalAlignment="Center"/>
         <ListBox MouseDoubleClick="verExistencias" x:Name="lstLibros" Grid.Row="0" Grid.Column="0" MaxHeight="90" Margin="50,45,50,0" 
                  DisplayMemberPath="Titulo"  VerticalAlignment="Center"/>

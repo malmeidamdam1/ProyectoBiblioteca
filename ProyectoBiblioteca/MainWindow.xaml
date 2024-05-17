@@ -2,7 +2,8 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:local="clr-namespace:ProyectoBiblioteca"
-        Title="MainWindow" Height="500" Width="1100" ResizeMode="NoResize"  >
+        Title="MainWindow" Height="500" Width="1100" ResizeMode="NoResize"  
+        Icon="/Images/logoBiblioteca.jpg">
 
     <Grid Background="#022038">
         <Grid.ColumnDefinitions>
@@ -64,13 +65,8 @@
                    Height="150" Width="800" Foreground="#DBDBDB" FontFamily="Arial"
                    />
         <Label x:Name="labelInicio" Content="GESTIÓN BIBLIOTECA - INICIO" Grid.Column="1" HorizontalAlignment="Center" Margin="222,37,182,0" VerticalAlignment="Top" Height="70" Width="490" FontWeight="Bold" FontSize="24"/>
-        <Button Content="Acerca de" Name="botonInicio1" Grid.Column="1" HorizontalAlignment="Left" Margin="34,292,0,0" VerticalAlignment="Top" Width="250" Height="70"/>
-        <Button Content="Preguntas frecuentes" Name="botonInicio2" Grid.Column="1" HorizontalAlignment="Left" Margin="316,292,0,0" VerticalAlignment="Top" Width="250" Height="70"/>
-        <Button Content="Reportar problema" Name="botonInicio3" Grid.Column="1" HorizontalAlignment="Left" Margin="602,292,0,0" VerticalAlignment="Top" Width="250" Height="70" RenderTransformOrigin="0.319,-2.517"/>
-
-
-
-
-
+        <Button Content="Recuerda" Name="botonInicio1" Grid.Column="1" HorizontalAlignment="Left" Margin="34,292,0,0" VerticalAlignment="Top" Width="250" Height="70" Click="botonInicio1_Click"/>
+        <Button Content="Preguntas frecuentes" Name="botonInicio2" Grid.Column="1" HorizontalAlignment="Left" Margin="316,292,0,0" VerticalAlignment="Top" Width="250" Height="70" Click="botonInicio2_Click"/>
+        <Button Content="Acerca de" Name="botonInicio3" Grid.Column="1" HorizontalAlignment="Left" Margin="602,292,0,0" VerticalAlignment="Top" Width="250" Height="70" Click="botonInicio3_Click" RenderTransformOrigin="0.319,-2.517"/>
     </Grid>
 </Window>

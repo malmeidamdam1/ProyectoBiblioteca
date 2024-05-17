@@ -67,6 +67,13 @@ namespace ProyectoBiblioteca.Ventanas
                     MessageBox.Show("No hay existencias suficientes para realizar el préstamo.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
                 }
+
+                if (dpFechaDevolucion.SelectedDate == null || dpFechaDevolucion.SelectedDate <= DateTime.Now) 
+                {
+                    MessageBox.Show("Por favor seleccione una fecha válida", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+
                 // Crear un nuevo préstamo
                 Prestamos nuevoPrestamo = new Prestamos
                 {
@@ -131,5 +138,11 @@ namespace ProyectoBiblioteca.Ventanas
                 MessageBox.Show($"Usuario: {usuarioSeleccionado.Nombre}\n¿Tiene sanción?: {(tieneSancion ? "Sí" : "No")}", "Penalizaciones del Usuario", MessageBoxButton.OK, MessageBoxImage.Information);
             }
         }
+
+        private void MostrarAyuda_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Doble clic sobre los elementos para comprobar rápidamente  sus atributos.", "Recuerda", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
     }
 }

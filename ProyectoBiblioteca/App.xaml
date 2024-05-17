@@ -12,11 +12,7 @@
             <Setter Property="Foreground" Value="#DBDBDB"/>
         </Style>
 
-       
-        
         <Style TargetType="Button">
-            <!--<Setter Property="Background" Value="#FF2C3E50"/>
-            <Setter Property="Foreground" Value="#DBDBDB"/>-->
             <Setter Property="Background" Value="#A3CFCD"/>
             <Setter Property="Foreground" Value="Black"/>
             <Setter Property="FontWeight" Value="Bold"/>
@@ -24,7 +20,5 @@
             <Setter Property="FontSize" Value="20"/>
             <Setter Property="FontFamily" Value="Arial"/>
         </Style>
-
     </Application.Resources>
-    
 </Application>

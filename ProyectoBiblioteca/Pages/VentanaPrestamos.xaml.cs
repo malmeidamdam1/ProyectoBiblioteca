@@ -10,8 +10,6 @@ namespace ProyectoBiblioteca.Pages
     public partial class VentanaPrestamos : Page
     {
         private BibliotecaModel bbdd;
-        private int idUsuario;
-
         public VentanaPrestamos()
         {
             InitializeComponent();
@@ -67,7 +65,6 @@ namespace ProyectoBiblioteca.Pages
                 MessageBox.Show("Error al registrar la devolución: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-
 
         private void RegistrarSancion(object sender, RoutedEventArgs e)
         {

@@ -196,7 +196,7 @@ namespace ProyectoBiblioteca.Pages
                     MessageBox.Show("Por favor, seleccione un libro para editar.", "Selección requerida", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show("Error al abrir la ventana de edición de libro." + "Por favor asegúrese de que ha seleccionado el tipo de obra adecuado", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
@@ -221,7 +221,7 @@ namespace ProyectoBiblioteca.Pages
                     MessageBox.Show("Por favor, seleccione una película para editar.", "Selección requerida", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show("Error al abrir la ventana de edición de película. " + "Por favor asegúrese de que ha seleccionado el tipo de obra adecuado", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
